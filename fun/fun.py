@@ -30,7 +30,7 @@ class Fun(Cog):
     @commands.command(name="aki",aliases=["cat"])
     async def _aki(self, ctx):
         embed = discord.Embed(title=':black_cat:', color=15383739)
-        embed.set_image(url='https://cdn.discordapp.com/attachments/568778270598889472/781680555544150026/20201126_193344.jpg')
+        embed.set_image(url=choice(self.ball))
         await ctx.send(embed=embed)
       
 def setup(bot):
