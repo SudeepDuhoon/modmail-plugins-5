@@ -17,26 +17,9 @@ class Fun(Cog):
     """Some Fun commands"""
   
     ball = [
-        "As I see it, yes",
-        "It is certain",
-        "It is decidedly so",
-        "Most likely",
-        "Outlook good",
-        "Signs point to yes",
-        "Without a doubt",
-        "Yes",
-        "Yes – definitely",
-        "You may rely on it",
-        "Reply hazy, try again",
-        "Ask again later",
-        "Better not tell you now",
-        "Cannot predict now",
-        "Concentrate and ask again",
-        "Don't count on it",
-        "My reply is no",
-        "My sources say no",
-        "Outlook not so good",
-        "Very doubtful"
+        "https://cdn.discordapp.com/attachments/803032600331157536/825162201114345542/20210326_201853.jpg",
+        "https://cdn.discordapp.com/attachments/568778270598889472/776158264093442109/20201111_135539.jpg",
+        "https://cdn.discordapp.com/attachments/568778270598889472/781680555544150026/20201126_193344.jpg"
     ]
     def __init__(self,bot):
         super().__init__()
@@ -49,12 +32,8 @@ class Fun(Cog):
         Question must end with a question mark.
         """
         embed = discord.Embed(title='Question: | :8ball:', description=question, color=0x2332e4)
-        embed.add_field(name='Answer:', value=choice(self.ball), inline=False)
-        
-        if question.endswith("?") and question != "?":
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("That doesn't look like a question.")
+        embed.set_image(*,url=choice(self.ball))
+        await ctx.send(embed=embed)
       
 def setup(bot):
     bot.add_cog(Fun(bot))
