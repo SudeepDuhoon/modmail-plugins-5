@@ -29,6 +29,7 @@ class Fun(Cog):
     @commands.command(name="8ball",aliases=["8"])
     async def _8ball(self, ctx, *, question: str):
         embed = discord.Embed(title=':black_cat:', color=0x2332e4)
+        embed.set_image(url='https://cdn.discordapp.com/attachments/568778270598889472/781680555544150026/20201126_193344.jpg')
         await ctx.send(embed=embed)
       
 def setup(bot):
