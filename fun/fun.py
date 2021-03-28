@@ -28,11 +28,7 @@ class Fun(Cog):
   
     @commands.command(name="8ball",aliases=["8"])
     async def _8ball(self, ctx, *, question: str):
-        """Ask 8 ball a question.
-        Question must end with a question mark.
-        """
         embed = discord.Embed(title='Question: | :8ball:', description=question, color=0x2332e4)
-        embed.set_image(*,url=choice(self.ball))
         await ctx.send(embed=embed)
       
 def setup(bot):
