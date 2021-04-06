@@ -13,8 +13,10 @@ Cog = getattr(commands, "Cog", object)
 
 logger = logging.getLogger("Modmail")
 
-class Fun(Cog):
-    """Call forth an image of Aki!"""
+class Misc(Cog):
+    """
+    Commands that Sage has made for the server.
+    """
   
     image = [
         "https://cdn.discordapp.com/attachments/568778270598889472/817536212235059210/20210305_181639.jpg",
@@ -128,9 +130,12 @@ class Fun(Cog):
   
     @commands.command(name="aki",aliases=["cat"])
     async def _aki(self, ctx):
+        """
+        Retrieves a random photo of Aki, Sage's cat.
+        """
         embed = discord.Embed(title=':black_cat: Aki has come to see you!', color=15383739)
         embed.set_image(url=choice(self.image))
         await ctx.send(embed=embed)
       
 def setup(bot):
-    bot.add_cog(Fun(bot))
+    bot.add_cog(Misc(bot))
