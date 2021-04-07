@@ -120,6 +120,17 @@ class Misc(Cog):
         "https://cdn.discordapp.com/attachments/568778270598889472/635240695413735424/20191019_181916.jpg",
         "https://cdn.discordapp.com/attachments/568778270598889472/639505236641447936/20191031_124421.jpg",
         "https://cdn.discordapp.com/attachments/568778270598889472/640978505995255810/20191104_131854.jpg",
+        "https://cdn.discordapp.com/attachments/568778270598889472/827398646756147200/20210402_002522.jpg",
+        "https://cdn.discordapp.com/attachments/568778270598889472/827304926119985182/IMG_1507.jpg",
+        "https://cdn.discordapp.com/attachments/568778270598889472/825581274324271134/20210328_000453.jpg",
+        "https://cdn.discordapp.com/attachments/568778270598889472/825581273325371433/20210328_000245.jpg",
+        "https://cdn.discordapp.com/attachments/568778270598889472/824153285137006662/20210324_012957.jpg",
+        "https://cdn.discordapp.com/attachments/568778270598889472/824153284432101396/20210324_012619.jpg",
+        "https://cdn.discordapp.com/attachments/568778270598889472/824013821118644224/20210323_161623.jpg",
+        "https://cdn.discordapp.com/attachments/568778270598889472/823620013582843904/20210322_141136.jpg",
+        "https://cdn.discordapp.com/attachments/568778270598889472/823619090026463292/20210322_140730.jpg",
+        "https://cdn.discordapp.com/attachments/568778270598889472/823619088545873930/20210322_140743.jpg",
+        "https://cdn.discordapp.com/attachments/568778270598889472/823339403962220594/20210321_193450.jpg",
         "https://cdn.discordapp.com/attachments/568778270598889472/817535487329566760/20210305_181342.jpg"
     ]
     
