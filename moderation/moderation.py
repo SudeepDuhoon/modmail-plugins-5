@@ -24,7 +24,7 @@ class TimeConverter(commands.Converter):
                 raise commands.BadArgument("{} is not a number!".format(v))
         return time
 
-class moderation(commands.Cog):
+class Moderation(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
@@ -53,7 +53,7 @@ class moderation(commands.Cog):
                 color = self.blurple
             )
             await ctx.send(embed = embed, delete_after = 5.0)
-            modlog = discord.utils.get(ctx.guild.text_channels, name = "modlog")
+            modlog = discord.utils.get(ctx.guild.text_channels, name = "mod·logs")
             if modlog == None:
                 return
             if modlog != None:
@@ -119,7 +119,7 @@ class moderation(commands.Cog):
                         color = self.blurple
                     )
                     await ctx.send(embed = embed)
-                    modlog = discord.utils.get(ctx.guild.text_channels, name = "modlog")
+                    modlog = discord.utils.get(ctx.guild.text_channels, name = "mod·logs")
                     if modlog == None:
                         return
                     if modlog != None:
@@ -185,7 +185,7 @@ class moderation(commands.Cog):
                         description = f"{member.mention} has been banned by {ctx.message.author.mention}.",
                         color = self.blurple
                     )
-                    modlog = discord.utils.get(ctx.guild.text_channels, name = "modlog")
+                    modlog = discord.utils.get(ctx.guild.text_channels, name = "mod·logs")
                     if modlog == None:
                         return
                     if modlog != None:
@@ -203,7 +203,7 @@ class moderation(commands.Cog):
                         color = self.blurple
                     )
                     await ctx.send(embed = embed)
-                    modlog = discord.utils.get(ctx.guild.text_channels, name = "modlog")
+                    modlog = discord.utils.get(ctx.guild.text_channels, name = "mod·logs")
                     if modlog == None:
                         return
                     if modlog != None:
@@ -248,7 +248,7 @@ class moderation(commands.Cog):
                     )
                     await ctx.guild.unban(user)
                     await ctx.send(embed = embed)
-                    modlog = discord.utils.get(ctx.guild.text_channels, name = "modlog")
+                    modlog = discord.utils.get(ctx.guild.text_channels, name = "mod·logs")
                     if modlog == None:
                         return
                     if modlog != None:
@@ -303,7 +303,7 @@ class moderation(commands.Cog):
                         color = self.blurple
                     )
                     await ctx.send(embed = embed)
-                    modlog = discord.utils.get(ctx.guild.text_channels, name = "modlog")
+                    modlog = discord.utils.get(ctx.guild.text_channels, name = "mod·logs")
                     if modlog == None:
                         return
                     if modlog != None:
@@ -326,7 +326,7 @@ class moderation(commands.Cog):
                         color = self.blurple
                     )
                     await ctx.send(embed = embed)
-                    modlog = discord.utils.get(ctx.guild.text_channels, name = "modlog")
+                    modlog = discord.utils.get(ctx.guild.text_channels, name = "mod·logs")
                     if modlog == None:
                         return
                     if modlog != None:
@@ -368,7 +368,7 @@ class moderation(commands.Cog):
                     color = self.blurple
                 )
                 await ctx.send(embed = embed)
-                modlog = discord.utils.get(ctx.guild.text_channels, name = "modlog")
+                modlog = discord.utils.get(ctx.guild.text_channels, name = "mod·logs")
                 if modlog == None:
                     return
                 if modlog != None:
@@ -399,7 +399,7 @@ class moderation(commands.Cog):
     #TempMute
     @commands.command()
     @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def tempmute(self, ctx, member:discord.Member, *, time:TimeConverter = None):
+    async def tempmute(self, ctx, member : discord.Member = None, *, time:TimeConverter = None):
         """Mutes a member for the specified time- time in 2d 10h 3m 2s format ex:
         &mute @Someone 1d"""
         print(1)
@@ -484,7 +484,7 @@ class moderation(commands.Cog):
                         color = self.blurple
                     )
                     await ctx.send(embed = embed)
-                    modlog = discord.utils.get(ctx.guild.text_channels, name = "modlog")
+                    modlog = discord.utils.get(ctx.guild.text_channels, name = "mod·logs")
                     if modlog == None:
                         return
                     if modlog != None:
@@ -503,7 +503,7 @@ class moderation(commands.Cog):
                         color = self.blurple
                     )
                     await ctx.send(embed = embed)
-                    modlog = discord.utils.get(ctx.guild.text_channels, name = "modlog")
+                    modlog = discord.utils.get(ctx.guild.text_channels, name = "mod·logs")
                     if modlog == None:
                         return
                     if modlog != None:
@@ -539,7 +539,7 @@ class moderation(commands.Cog):
         )
         embed.set_image(url = "https://cdn.discordapp.com/attachments/600843048724987925/600843407228928011/tenor.gif")
         await new_channel.send(embed = embed, delete_after = 30.0)
-        modlog = discord.utils.get(ctx.guild.text_channels, name = "modlog")
+        modlog = discord.utils.get(ctx.guild.text_channels, name = "mod·logs")
         if modlog == None:
             pass
         if modlog != None:
@@ -561,4 +561,4 @@ class moderation(commands.Cog):
             await ctx.send(embed = embed)
 
 def setup(bot):
-    bot.add_cog(moderation(bot))
+    bot.add_cog(Moderation(bot))
