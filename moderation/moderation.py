@@ -2,27 +2,6 @@ import discord
 from discord.ext import commands
 from core import checks
 from core.models import PermissionLevel
-import re
-import asyncio
-import sys
-import traceback
-
-time_regex = re.compile("(?:(\d{1,5})(h|s|m|d))+?")
-time_dict = {"h":3600, "s":1, "m":60, "d":86400}
-
-class TimeConverter(commands.Converter):
-    async def convert(self, ctx, argument):
-        args = argument.lower()
-        matches = re.findall(time_regex, args)
-        time = 0
-        for v, k in matches:
-            try:
-                time += time_dict[k] * float(v)
-            except KeyError:
-                raise commands.BadArgument("{} is an invalid time-key! h/m/s/d are valid!".format(k))
-            except ValueError:
-                raise commands.BadArgument("{} is not a number!".format(v))
-        return time
 
 class Moderation(commands.Cog):
 
@@ -395,75 +374,6 @@ class Moderation(commands.Cog):
                 color = self.errorcolor
             )
             await ctx.send(embed = embed)
-
-    #TempMute
-    @commands.command()
-    @checks.has_permissions(PermissionLevel.MODERATOR)
-    async def tempmute(self, ctx, member : discord.Member = None, *, time:TimeConverter = None):
-        """Mutes a member for the specified time- time in 2d 10h 3m 2s format ex:
-        &mute @Someone 1d"""
-        print(1)
-        if time == None:
-            embed = discord.Embed(
-                title= "Error",
-                description= "Please specify a time!",
-                color = self.errorcolor
-            )
-            await ctx.send(embed=embed)
-            print(2)
-        if member == None:
-            embed = discord.Embed(
-                title = "Error",
-                description = "Please specify a member to mute!",
-                color = self.errorcolor
-            )
-            await ctx.send(embed=embed)
-            print(3)
-        else:
-            role = discord.utils.get(ctx.guild.roles, name="Muted")
-            if role == None:
-                role = await ctx.guild.create_role(name="Muted")
-                for channel in ctx.guild.text_channels:
-                    await channel.set_permissions(role, send_messages=False)
-                await member.add_roles(role)
-                embed = discord.Embed(
-                    title= "Muted",
-                    description= f"{member.mention} has been muted by {ctx.message.author.mention} for {time}s",
-                    color = self.blurple
-                )
-                await ctx.send(embed=embed)
-                modlog = discord.utils.get(ctx.guild.text_channels, name = "mod·logs")
-                    if modlog == None:
-                        return
-                    if modlog != None:
-                        embed = discord.Embed(
-                            title = "Muted",
-                            description = f"{member.mention} has been muted by {ctx.message.author.mention} for {time}s.",
-                            color = self.blurple
-                        )
-                await modlog.send(embed = embed)
-                print(4)
-                embed = discord.Embed(
-                    title = "Muted",
-                    description = f"You have been muted in {ctx.guiild.name} by {ctx.author.mention} for {time}",
-                    color = self.blurple
-                )
-                await member.send(embed=embed)
-                print(5)
-            if time:
-                await asyncio.sleep(time)
-                await member.remove_roles(role)
-                print(6)
-             
-    @tempmute.error
-    async def tempmute_error(self, ctx, error):
-        if isinstance(error, commands.MissingPermissions):
-            embed = discord.Embed(
-                title = "Error",
-                description = "You do not have permission to tempmute members!",
-                color = self.errorcolor
-            )
-            await ctx.send(embed=embed)
             
     #Softban
     @commands.command(aliases = ["lightban"])
