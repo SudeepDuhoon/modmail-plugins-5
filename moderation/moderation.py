@@ -406,16 +406,16 @@ class Moderation(commands.Cog):
         if time == None:
             embed = discord.Embed(
                 title= "Error",
-                description= "Please specify a time",
-                color= 0xFF0000
+                description= "Please specify a time!",
+                color = self.errorcolor
             )
             await ctx.send(embed=embed)
             print(2)
         if member == None:
             embed = discord.Embed(
-                title= "Error",
-                description= "Please specify a member to mute",
-                color= 0xFF0000
+                title = "Error",
+                description = "Please specify a member to mute!",
+                color = self.errorcolor
             )
             await ctx.send(embed=embed)
             print(3)
@@ -427,16 +427,26 @@ class Moderation(commands.Cog):
                     await channel.set_permissions(role, send_messages=False)
                 await member.add_roles(role)
                 embed = discord.Embed(
-                    title= "Mute",
+                    title= "Muted",
                     description= f"{member.mention} has been muted by {ctx.message.author.mention} for {time}s",
-                    color=0x00FF00
+                    color = self.blurple
                 )
                 await ctx.send(embed=embed)
+                modlog = discord.utils.get(ctx.guild.text_channels, name = "mod·logs")
+                    if modlog == None:
+                        return
+                    if modlog != None:
+                        embed = discord.Embed(
+                            title = "Muted",
+                            description = f"{member.mention} has been muted by {ctx.message.author.mention} for {time}s.",
+                            color = self.blurple
+                        )
+                await modlog.send(embed = embed)
                 print(4)
                 embed = discord.Embed(
-                    title= "Muted",
-                    description= f"You have been muted in {ctx.guiild.name} by {ctx.author.mention} for {time}",
-                    color=0x06c9ff
+                    title = "Muted",
+                    description = f"You have been muted in {ctx.guiild.name} by {ctx.author.mention} for {time}",
+                    color = self.blurple
                 )
                 await member.send(embed=embed)
                 print(5)
@@ -449,9 +459,9 @@ class Moderation(commands.Cog):
     async def tempmute_error(self, ctx, error):
         if isinstance(error, commands.MissingPermissions):
             embed = discord.Embed(
-                title="Error",
-                description="You do not have permissions to tempmute members!",
-                color=0xFF0000
+                title = "Error",
+                description = "You do not have permission to tempmute members!",
+                color = self.errorcolor
             )
             await ctx.send(embed=embed)
             
