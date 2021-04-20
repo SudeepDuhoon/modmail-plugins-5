@@ -19,6 +19,7 @@ class bean(commands.Cog):
                 await ctx.send(embed=embed)
             else:
                 embed = discord.Embed(title="Bean | case 69", description=f"{member.mention} Has been beaned for {reason}!", color=self.color)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/819994849838366771.png")
                 await ctx.send(embed=embed)           
         
 def setup(bot):
