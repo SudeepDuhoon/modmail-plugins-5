@@ -18,7 +18,7 @@ class Misc(Cog):
     Commands that Sage has made for the server.
     """
   
-    image = [
+    akiimage = [
         "https://cdn.discordapp.com/attachments/568778270598889472/817536212235059210/20210305_181639.jpg",
         "https://cdn.discordapp.com/attachments/568778270598889472/816921765510905877/20190816_215610.jpg",
         "https://cdn.discordapp.com/attachments/568778270598889472/810032934035783680/20210213_011915.jpg",
@@ -134,6 +134,11 @@ class Misc(Cog):
         "https://cdn.discordapp.com/attachments/568778270598889472/817535487329566760/20210305_181342.jpg"
     ]
     
+        gaytimeimage = [
+        "https://danbooru.donmai.us/data/sample/01/f6/__yae_sakura_and_kallen_kaslana_honkai_and_1_more_drawn_by_amana_pocketkey__sample-01f6d4f8538db12cba435f84f5f35bea.jpg",
+        "https://danbooru.donmai.us/data/sample/01/f6/__yae_sakura_and_kallen_kaslana_honkai_and_1_more_drawn_by_amana_pocketkey__sample-01f6d4f8538db12cba435f84f5f35bea.jpg"
+    ]
+    
     def __init__(self,bot):
         super().__init__()
         self.bot = bot
@@ -145,7 +150,16 @@ class Misc(Cog):
         Retrieves a random photo of Aki, Sage's cat.
         """
         embed = discord.Embed(title=':black_cat: Aki has come to see you!', color=15383739)
-        embed.set_image(url=choice(self.image))
+        embed.set_image(url=choice(self.akiimage))
+        await ctx.send(embed=embed)
+        
+    @commands.command(name="gaytime",aliases=["gay"])
+    async def _aki(self, ctx):
+        """
+        Retrieves a random photo of Yae Sakura and Kallen Kaslana being gay.
+        """
+        embed = discord.Embed(color=15383739)
+        embed.set_image(url=choice(self.gaytimeimage))
         await ctx.send(embed=embed)
       
 def setup(bot):
