@@ -6,7 +6,7 @@ class bean(commands.Cog):
         self.bot = bot
         self.color = self.bot.main_color
         
-    @commands.command(name="pban", aliases=['fban'])
+    @commands.command(name="bean", aliases=['fban'])
     async def bean(self, ctx, member: discord.Member = None, reason = None):
         await ctx.message.delete()
         if not member:
