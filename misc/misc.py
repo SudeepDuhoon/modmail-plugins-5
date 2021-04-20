@@ -154,7 +154,7 @@ class Misc(Cog):
         await ctx.send(embed=embed)
         
     @commands.command(name="gaytime",aliases=["gay"])
-    async def _aki(self, ctx):
+    async def _gaytime(self, ctx):
         """
         Retrieves a random photo of Yae Sakura and Kallen Kaslana being gay.
         """
