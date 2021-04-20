@@ -14,10 +14,10 @@ class bean(commands.Cog):
             await ctx.send(embed=embed)
         else:
             if not reason:
-                embed = discord.Embed(title="Ban", description=f"{member.mention} Has been beaned!", color=self.color)
+                embed = discord.Embed(title="Bean | case 420", description=f"{member.mention} Has been beaned!", color=self.color)
                 await ctx.send(embed=embed)
             else:
-                embed = discord.Embed(title="Ban", description=f"{member.mention} Has been beaned for {reason}!", color=self.color)
+                embed = discord.Embed(title="Bean | case 69", description=f"{member.mention} Has been beaned for {reason}!", color=self.color)
                 await ctx.send(embed=embed)           
         
 def setup(bot):
