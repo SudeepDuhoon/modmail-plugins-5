@@ -52,7 +52,6 @@ class Yuri(Cog):
         """
         embed = discord.Embed(color=15383739)
         embed.set_image(url=choice(self.image))
-        set_footer(text=Embed.Empty)
         await ctx.send(embed=embed)
       
 def setup(bot):
