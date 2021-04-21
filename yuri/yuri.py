@@ -38,6 +38,11 @@ class Yuri(Cog):
         "https://64.media.tumblr.com/aa2fe7e50f1e3fc150f9adf46174ad14/tumblr_per9lkHwj91rwcs8fo5_1280.jpg",
         "https://64.media.tumblr.com/ad50c9aa4e42e66c0ef61e30b787ed74/ee70362d6603625b-35/s1280x1920/79e0db2e48cd11d5c5a195631173571e8dc63514.jpg",
         "https://danbooru.me/data/sample/__yae_sakura_kallen_kaslana_and_kallen_kaslana_honkai_and_1_more_drawn_by_jiaming_liu__sample-d00bec3dc082f2bc705889df58048f9b.jpg",
+        "https://danbooru.me/data/sample/__yae_sakura_kallen_kaslana_and_yae_sakura_honkai_and_1_more_drawn_by_senseofexistenc__sample-83be79afd99977c58e9c3f907d65178f.jpg",
+        "https://danbooru.me/data/sample/__yae_sakura_and_kallen_kaslana_honkai_and_1_more_drawn_by_dokun7__sample-cb80d9b720205b45455536be100ad891.jpg",
+        "https://danbooru.me/data/sample/__yae_sakura_theresa_apocalypse_seele_vollerei_yae_sakura_and_otto_apocalypse_honkai_and_1_more_drawn_by_tsubasa_tsubasa__sample-38f6f7b6b14d4673e131dab1e662ba42.jpg",
+        "https://danbooru.me/data/sample/__yae_sakura_kallen_kaslana_and_yae_sakura_honkai_and_1_more_drawn_by_791_meiyuewudi__sample-ccdc08bc9c6d103c9d249714b931d081.jpg",
+        "https://danbooru.me/data/sample/__yae_sakura_and_kallen_kaslana_honkai_and_2_more_drawn_by_shibanme_tekikumo__sample-a521bdadc742caeb1bf8f60315143011.jpg",
         "https://safebooru.org//samples/3024/sample_b820a529526c890d5da3786ff121c8fc30e61e97.jpg?3148813"
     ]
     
