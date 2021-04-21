@@ -37,6 +37,7 @@ class Yuri(Cog):
         "https://64.media.tumblr.com/2d2fc05a4d1723f40af7671d8fc83a69/tumblr_per9lkHwj91rwcs8fo6_1280.jpg",
         "https://64.media.tumblr.com/aa2fe7e50f1e3fc150f9adf46174ad14/tumblr_per9lkHwj91rwcs8fo5_1280.jpg",
         "https://64.media.tumblr.com/ad50c9aa4e42e66c0ef61e30b787ed74/ee70362d6603625b-35/s1280x1920/79e0db2e48cd11d5c5a195631173571e8dc63514.jpg",
+        "https://danbooru.me/data/sample/__yae_sakura_kallen_kaslana_and_kallen_kaslana_honkai_and_1_more_drawn_by_jiaming_liu__sample-d00bec3dc082f2bc705889df58048f9b.jpg",
         "https://safebooru.org//samples/3024/sample_b820a529526c890d5da3786ff121c8fc30e61e97.jpg?3148813"
     ]
     
