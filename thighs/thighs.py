@@ -22,7 +22,7 @@ class Thighs(Cog):
         "https://i.imgur.com/hj6KIMe.png",
         "https://i.imgur.com/xUaAxak.png",
         "https://i.imgur.com/RaqNOao.png",
-        "https://i.imgur.com/qGnFz6r.mp4",
+        "https://cdn.discordapp.com/attachments/819078728130887742/834687080000913419/qGnFz6r.gif",
         "https://i.imgur.com/K3BKdDn.png",
         "https://i.imgur.com/9dNehDs.png",
         "https://i.imgur.com/crRccvJ.png",
