@@ -37,8 +37,6 @@ class Thighs(Cog):
   
     @commands.command(name="thighs",aliases=["thigh"])
     async def _thighs(self, ctx):
-    if ctx.channel.id is not 822310331321155665:
-        return
         """
         Retrieves a random photo of Honkai Thighs.
         """
