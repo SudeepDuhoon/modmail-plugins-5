@@ -45,7 +45,7 @@ class Thighs(Cog):
      if (message.channel.id == '822310331321155665'): 
         await ctx.send(embed=embed)
 
-        else:
+     if not (message.channel.id == '822310331321155665'):
             return
       
 def setup(bot):
