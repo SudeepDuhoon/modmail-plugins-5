@@ -40,9 +40,9 @@ class Thighs(Cog):
         """
         Retrieves a random photo of Honkai Thighs.
         """
+     if (message.channel.id == '822310331321155665'): 
         embed = discord.Embed(color=15383739)
         embed.set_image(url=choice(self.image))
-     if (message.channel.id == '822310331321155665'): 
         await ctx.send(embed=embed)
 
      if not (message.channel.id == '822310331321155665'):
