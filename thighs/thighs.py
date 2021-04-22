@@ -45,7 +45,7 @@ class Thighs(Cog):
         embed.set_image(url=choice(self.image))
         await ctx.send(embed=embed)
 
-     if not (message.channel.id == '822310331321155665'):
+     else:
             return
       
 def setup(bot):
