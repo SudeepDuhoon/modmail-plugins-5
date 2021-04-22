@@ -40,14 +40,9 @@ class Thighs(Cog):
         """
         Retrieves a random photo of Honkai Thighs.
         """
-
         embed = discord.Embed(color=15383739)
         embed.set_image(url=choice(self.image))
         await ctx.send(embed=embed)
-
-     else:
-        await ctx.send('Error.')
-            return
-      
+        
 def setup(bot):
     bot.add_cog(Thighs(bot))
