@@ -46,6 +46,7 @@ class Thighs(Cog):
         await ctx.send(embed=embed)
 
      else:
+        await ctx.send('Error.')
             return
       
 def setup(bot):
