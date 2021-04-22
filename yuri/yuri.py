@@ -58,11 +58,7 @@ class Yuri(Cog):
         """
         embed = discord.Embed(color=15383739)
         embed.set_image(url=choice(self.image))
-     if (message.channel.id == '822310331321155665'): 
         await ctx.send(embed=embed)
-
-        else:
-            return
       
 def setup(bot):
     bot.add_cog(Yuri(bot))
