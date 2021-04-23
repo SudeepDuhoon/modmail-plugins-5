@@ -19,7 +19,6 @@ class Thighs(Cog):
     """
   
     image = [
-        "https://i.imgur.com/hj6KIMe.png",
         "https://i.imgur.com/xUaAxak.png",
         "https://i.imgur.com/RaqNOao.png",
         "https://cdn.discordapp.com/attachments/819078728130887742/834687080000913419/qGnFz6r.gif",
