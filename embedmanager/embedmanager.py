@@ -142,7 +142,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         return data
 
     @commands.group(name="embed", usage="<option>", invoke_without_command=True)
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def _embed(self, ctx: commands.Context):
         """
         Base command for Embed Manager.
@@ -154,7 +154,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.send_help(ctx.command)
 
     @_embed.command(name="example")
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_example(self, ctx: commands.Context):
         """
         Show an example of embed in JSON.
@@ -164,7 +164,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.send(embed=embed)
 
     @_embed.command(name="simple")
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_simple(
         self,
         ctx: commands.Context,
@@ -185,7 +185,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await channel.send(embed=embed)
 
     @_embed.command(name="json", aliases=["fromjson", "fromdata"])
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_json(self, ctx: commands.Context, *, data: JSON_CONTENT_CONVERTER):
         """
         Post an embed from valid JSON.
@@ -206,7 +206,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.message.add_reaction(YES_EMOJI)
 
     @_embed.command(name="message", aliases=["frommsg", "frommessage"])
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_message(self, ctx: commands.Context, message: discord.Message, index: int = 0):
         """
         Post an embed from a message.
@@ -220,7 +220,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.send(embed=embed)
 
     @_embed.command(name="download")
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_download(self, ctx: commands.Context, message: discord.Message, index: int = 0):
         """
         Download a JSON file for a message's embed.
@@ -237,7 +237,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.send(file=discord.File(fp, "embed.json"))
 
     @_embed.command(name="post", aliases=["view", "drop", "show"], invoke_without_command=True)
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_post(
         self, ctx: commands.Context, name: StoredEmbedConverter, channel: MessageableChannel = None
     ):
@@ -253,7 +253,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await channel.send(embed=discord.Embed.from_dict(name["embed"]))
 
     @_embed.command(name="info")
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_info(self, ctx: commands.Context, name: StoredEmbedConverter):
         """
         Get info about an embed that is stored.
@@ -272,7 +272,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.send(embed=embed)
 
     @_embed.group(name="edit", usage="<option>", invoke_without_command=True)
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_edit(
         self,
         ctx: commands.Context,
@@ -293,7 +293,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.message.add_reaction(YES_EMOJI)
 
     @embed_edit.command(name="json", aliases=["fromjson", "fromdata"])
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_edit_json(
         self, ctx: commands.Context, message: BotMessage, *, data: JSON_CONVERTER
     ):
@@ -306,7 +306,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.message.add_reaction(YES_EMOJI)
 
     @embed_edit.command(name="fromfile", aliases=["fromjsonfile", "fromdatafile"])
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_edit_fromfile(self, ctx: commands.Context, message: BotMessage):
         """
         Edit a message's embed using a valid JSON file.
@@ -319,7 +319,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.message.add_reaction(YES_EMOJI)
 
     @embed_edit.command(name="message", aliases=["frommsg", "frommessage"])
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_edit_message(
         self,
         ctx: commands.Context,
@@ -341,7 +341,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.message.add_reaction(YES_EMOJI)
 
     @_embed.group(name="store", usage="<option>", invoke_without_command=True)
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_store(self, ctx: commands.Context):
         """
         Store commands to store embeds for later use.
@@ -349,7 +349,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.send_help(ctx.command)
 
     @embed_store.command(name="simple")
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_store_simple(
         self,
         ctx: commands.Context,
@@ -372,7 +372,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.message.add_reaction(YES_EMOJI)
 
     @embed_store.command(name="json", aliases=["fromjson", "fromdata"])
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_store_json(self, ctx: commands.Context, name: str, *, data: JSON_CONVERTER):
         """
         Store an embed from valid JSON.
@@ -381,7 +381,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.message.add_reaction(YES_EMOJI)
 
     @embed_store.command(name="fromfile", aliases=["fromjsonfile", "fromdatafile"])
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_store_fromfile(self, ctx: commands.Context, name: str):
         """
         Store an embed from a valid JSON file.
@@ -392,7 +392,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.message.add_reaction(YES_EMOJI)
 
     @embed_store.command(name="message", aliases=["frommsg", "frommessage"])
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_store_message(self, ctx: commands.Context, name: str, message: discord.Message, index: int = 0):
         """
         Store an embed from a message.
@@ -407,7 +407,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.message.add_reaction(YES_EMOJI)
 
     @embed_store.command(name="remove", aliases=["delete", "rm", "del"])
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_store_remove(self, ctx: commands.Context, name: str):
         """
         Remove a stored embed.
@@ -423,7 +423,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
             await ctx.send(f"Embed `{name}` is now deleted.")
 
     @embed_store.command(name="download")
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_store_download(self, ctx: commands.Context, embed: StoredEmbedConverter):
         """
         Download a JSON file from a stored embed.
@@ -433,7 +433,7 @@ class EmbedManager(commands.Cog, name="Embed Manager"):
         await ctx.send(file=discord.File(fp, "embed.json"))
 
     @embed_store.command(name="list")
-    @checks.has_permissions(PermissionLevel.MODERATOR)
+    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     async def embed_store_list(self, ctx: commands.Context):
         """
         View stored embeds.
