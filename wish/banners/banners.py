@@ -1,7 +1,6 @@
 import random
 from pymongo import MongoClient
 from discord import Embed
-from dotenv import load_dotenv
 import os
 from banners.images import FIVE_STARS_IMAGES, FOUR_STARS_IMAGES, THREE_STAR_IMAGES
 
