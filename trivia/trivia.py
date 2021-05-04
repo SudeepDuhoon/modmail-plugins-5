@@ -141,7 +141,7 @@ class TriviaSession:
                 await asyncio.sleep(1.5)  # Decreased to 1.5, original was 3.
             self.count += 1
             msg = question
-            title = bold("Question number {num}!".format(num=self.count))
+            title = bold("❓ ⋅⊱ Question #{num}!".format(num=self.count))
             await self.ctx.send(
                 embed=discord.Embed(color=15383739, title=title, description=msg)
             )
@@ -152,7 +152,7 @@ class TriviaSession:
                 await self.end_game()
                 break
         else:
-            await self.send_error_reply(bold("There are no more questions!"))
+            await self.send_error_reply(bold("There are no more questions! <:yaesad:816552378919682048>"))
             await self.end_game()
 
     async def _send_startup_msg(self):
@@ -211,7 +211,7 @@ class TriviaSession:
             )
         except asyncio.TimeoutError:
             if time.time() - self._last_response >= timeout:
-                await self.ctx.send("Guys...? Well, I guess I'll stop then.")
+                await self.ctx.send("Guys...? Well, I guess I'll stop then. <:yaesad:816552378919682048>")
                 await self.send_error_reply(bold("Trivia stopped."))
                 self.stop()
                 return False
@@ -225,7 +225,7 @@ class TriviaSession:
             await self.ctx.send(reply)
         else:
             self.scores[message.author] += 1
-            reply = "You got it {user}! **+1** to you!".format(user=message.author.display_name)
+            reply = "You got it {user}! **+1** to you! 🏆".format(user=message.author.display_name)
             await self.send_success_reply(reply)
         return True
 
@@ -447,7 +447,7 @@ class Trivia(commands.Cog):
         new_settings = {"max_score": score}
         await self.update_config(ctx, new_settings)
         desc = "Done. Points required to win set to `{score}`.".format(score=score)
-        embed = discord.Embed(color=15383739, description=desc)
+        embed = discord.Embed(color=10731148, description=desc)
         await ctx.send(embed=embed)
 
     @triviaset.command(name="timelimit")
@@ -459,7 +459,7 @@ class Trivia(commands.Cog):
         new_settings = {"delay": seconds}
         await self.update_config(ctx, new_settings)
         desc = "Done. Maximum seconds to answer set to `{num}`.".format(num=seconds)
-        embed = discord.Embed(color=15383739, description=desc)
+        embed = discord.Embed(color=10731148, description=desc)
         await ctx.send(embed=embed)
 
     @triviaset.command(name="stopafter")
@@ -476,7 +476,7 @@ class Trivia(commands.Cog):
                 num=seconds
             )
         )
-        embed = discord.Embed(color=15383739, description=desc)
+        embed = discord.Embed(color=10731148, description=desc)
         await ctx.send(embed=embed)
 
     @triviaset.command(name="override")
@@ -492,7 +492,7 @@ class Trivia(commands.Cog):
             desc = (
                 "Done. Trivia lists can no longer override the trivia settings for this " "server."
             )
-        embed = discord.Embed(color=15383739, description=desc)
+        embed = discord.Embed(color=10731148, description=desc)
         await ctx.send(embed=embed)
 
     @triviaset.command(name="botplays", usage="<true_or_false>")
@@ -509,7 +509,7 @@ class Trivia(commands.Cog):
             desc = "Done. I'll now gain a point if users don't answer in time."
         else:
             desc = "Alright, I won't embarass you at trivia anymore."
-        embed = discord.Embed(color=15383739, description=desc)
+        embed = discord.Embed(color=10731148, description=desc)
         await ctx.send(embed=embed)
 
     @triviaset.command(name="revealanswer", usage="<true_or_false>")
@@ -527,7 +527,7 @@ class Trivia(commands.Cog):
             desc = "Done. I'll reveal the answer if no one knows it."
         else:
             desc = "Alright, I won't reveal the answer to the questions anymore."
-        embed = discord.Embed(color=15383739, description=desc)
+        embed = discord.Embed(color=10731148, description=desc)
         await ctx.send(embed=embed)
 
     @commands.group(invoke_without_command=True)
