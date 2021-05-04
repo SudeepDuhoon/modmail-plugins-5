@@ -1,9 +1,8 @@
 # bot.py
 
-import discord, random, os, json, requests
+import discord, json, requests
 from discord.ext import commands
 from discord.ext import menus
-from dotenv import load_dotenv
 
 class Genshin(commands.Cog):
     def __init__(self, bot):
