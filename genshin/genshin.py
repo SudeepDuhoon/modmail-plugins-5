@@ -22,7 +22,11 @@ class Genshin(commands.Cog):
 colors = {'Anemo': 0x9ef9cd, 'Geo': 0xf4d862, 'Electro': 0xc36dff, 'Dendro': 0xb1ea26, 'Hydro': 0x079fff, 'Pyro': 0xff8739, 'Cryo': 0xccfffe,\
             5: 0xff8000, 4: 0xa335ee, 3: 0x0070dd, 2: 0x1eff00, 1: 0xffffff}
 
-@commands.command()
+@commands.command(name="gay",aliases=["gay"])
+async def gay(ctx):
+    await ctx.send(embed=discord.Embed(title='Character List', description="gay"))
+
+@commands.command(name="characters",aliases=["chs"])
 async def characters(ctx):
     raw = requests.get('https://api.genshin.dev/characters')
     data = raw.json()
