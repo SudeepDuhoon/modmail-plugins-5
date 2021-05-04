@@ -143,7 +143,7 @@ class TriviaSession:
             msg = question
             title = bold("Question number {num}!".format(num=self.count))
             await self.ctx.send(
-                embed=discord.Embed(title=title, description=msg)
+                embed=discord.Embed(color=self.bot.main_color, title=title, description=msg)
             )
             continue_ = await self.wait_for_answer(answers, delay, timeout)
             if continue_ is False:
@@ -297,7 +297,7 @@ class TriviaSession:
     async def send_normal_reply(self, description):
         perms = self.ctx.channel.permissions_for(self.ctx.me)
         if perms.embed_links:
-            embed = discord.Embed(color=discord.Color.dark_theme(), description=description)
+            embed = discord.Embed(color=15383739, description=description)
             await self.ctx.send(embed=embed)
         else:
             await self.ctx.send(description)
@@ -426,7 +426,7 @@ class Trivia(commands.Cog):
             "Allow lists to override settings: `{allow_override}`".format(**settings),
         )
         embed = discord.Embed(
-            color=discord.Color.dark_theme(), title="Current settings", description=desc
+            color=15383739, title="Current settings", description=desc
         )
         await ctx.send(embed=embed)
 
@@ -439,7 +439,7 @@ class Trivia(commands.Cog):
         new_settings = {"max_score": score}
         await self.update_config(ctx, new_settings)
         desc = "Done. Points required to win set to `{score}`.".format(score=score)
-        embed = discord.Embed(color=discord.Color.dark_theme(), description=desc)
+        embed = discord.Embed(color=15383739, description=desc)
         await ctx.send(embed=embed)
 
     @triviaset.command(name="timelimit")
@@ -451,7 +451,7 @@ class Trivia(commands.Cog):
         new_settings = {"delay": seconds}
         await self.update_config(ctx, new_settings)
         desc = "Done. Maximum seconds to answer set to `{num}`.".format(num=seconds)
-        embed = discord.Embed(color=discord.Color.dark_theme(), description=desc)
+        embed = discord.Embed(color=15383739, description=desc)
         await ctx.send(embed=embed)
 
     @triviaset.command(name="stopafter")
@@ -468,7 +468,7 @@ class Trivia(commands.Cog):
                 num=seconds
             )
         )
-        embed = discord.Embed(color=discord.Color.dark_theme(), description=desc)
+        embed = discord.Embed(color=15383739, description=desc)
         await ctx.send(embed=embed)
 
     @triviaset.command(name="override")
@@ -484,7 +484,7 @@ class Trivia(commands.Cog):
             desc = (
                 "Done. Trivia lists can no longer override the trivia settings for this " "server."
             )
-        embed = discord.Embed(color=discord.Color.dark_theme(), description=desc)
+        embed = discord.Embed(color=15383739, description=desc)
         await ctx.send(embed=embed)
 
     @triviaset.command(name="botplays", usage="<true_or_false>")
@@ -501,7 +501,7 @@ class Trivia(commands.Cog):
             desc = "Done. I'll now gain a point if users don't answer in time."
         else:
             desc = "Alright, I won't embarass you at trivia anymore."
-        embed = discord.Embed(color=discord.Color.dark_theme(), description=desc)
+        embed = discord.Embed(color=15383739, description=desc)
         await ctx.send(embed=embed)
 
     @triviaset.command(name="revealanswer", usage="<true_or_false>")
@@ -519,7 +519,7 @@ class Trivia(commands.Cog):
             desc = "Done. I'll reveal the answer if no one knows it."
         else:
             desc = "Alright, I won't reveal the answer to the questions anymore."
-        embed = discord.Embed(color=discord.Color.dark_theme(), description=desc)
+        embed = discord.Embed(color=15383739, description=desc)
         await ctx.send(embed=embed)
 
     @commands.group(invoke_without_command=True)
@@ -589,7 +589,7 @@ class Trivia(commands.Cog):
         stop_message = bold("Trivia stopped.")
         if ctx.channel.permissions_for(ctx.me).embed_links:
             await ctx.send(
-                embed=discord.Embed(color=discord.Color.dark_theme(), description=stop_message)
+                embed=discord.Embed(color=15383739, description=stop_message)
             )
         else:
             await ctx.send(stop_message)
@@ -605,7 +605,7 @@ class Trivia(commands.Cog):
             if continued:
                 title += " (Continued)"
             embed = discord.Embed(
-                title=title, color=discord.Color.dark_theme(), description=description
+                title=title, color=15383739, description=description
             )
             len_list = len(lists)
             footer_text = f"Found {plural(len_list):trivia category|trivia categories}"
