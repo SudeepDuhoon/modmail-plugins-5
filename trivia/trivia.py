@@ -140,7 +140,7 @@ class TriviaSession:
             async with self.ctx.typing():
                 await asyncio.sleep(1.5)  # Decreased to 1.5, original was 3.
             self.count += 1
-            msg = discord.Embed(title="bold("Question number {num}!".format(num=self.count))", description="question", color=0xFF5733)
+            msg = discord.Embed(title="Question number {num}!", description="question", color=0xFF5733)
             await self.ctx.send(msg)
             continue_ = await self.wait_for_answer(answers, delay, timeout)
             if continue_ is False:
