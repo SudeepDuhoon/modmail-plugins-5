@@ -143,7 +143,7 @@ class TriviaSession:
             msg = question
             title = bold("Question number {num}!".format(num=self.count))
             await self.ctx.send(
-                embed=discord.Embed(color=self.bot.main_color, title=title, description=msg)
+                embed=discord.Embed(color=15383739, title=title, description=msg)
             )
             continue_ = await self.wait_for_answer(answers, delay, timeout)
             if continue_ is False:
