@@ -1,30 +1,43 @@
+# bot.py
+
 import discord, random, os, json, requests
 from discord.ext import commands
 from discord.ext import menus
+from dotenv import load_dotenv
 
 class Genshin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+#  $$$$$$\                                $$\       $$\
+# $$  __$$\                               $$ |      \__|
+# $$ /  \__| $$$$$$\  $$$$$$$\   $$$$$$$\ $$$$$$$\  $$\ $$$$$$$\
+# $$ |$$$$\ $$  __$$\ $$  __$$\ $$  _____|$$  __$$\ $$ |$$  __$$\
+# $$ |\_$$ |$$$$$$$$ |$$ |  $$ |\$$$$$$\  $$ |  $$ |$$ |$$ |  $$ |
+# $$ |  $$ |$$   ____|$$ |  $$ | \____$$\ $$ |  $$ |$$ |$$ |  $$ |
+# \$$$$$$  |\$$$$$$$\ $$ |  $$ |$$$$$$$  |$$ |  $$ |$$ |$$ |  $$ |
+#  \______/  \_______|\__|  \__|\_______/ \__|  \__|\__|\__|  \__|
+
+
 # color codes for elements and rarity
-        colors = {'Anemo': 0x9ef9cd, 'Geo': 0xf4d862, 'Electro': 0xc36dff, 'Dendro': 0xb1ea26, 'Hydro': 0x079fff, 'Pyro': 0xff8739, 'Cryo': 0xccfffe,\
+colors = {'Anemo': 0x9ef9cd, 'Geo': 0xf4d862, 'Electro': 0xc36dff, 'Dendro': 0xb1ea26, 'Hydro': 0x079fff, 'Pyro': 0xff8739, 'Cryo': 0xccfffe,\
             5: 0xff8000, 4: 0xa335ee, 3: 0x0070dd, 2: 0x1eff00, 1: 0xffffff}
 
-@bot.command()
+@commands.command()
 async def characters(ctx):
     raw = requests.get('https://api.genshin.dev/characters')
     data = raw.json()
     desc = ', '.join([i.capitalize() for i in data])
     await ctx.send(embed=discord.Embed(title='Character List', description=desc))
 
-@bot.command()
+@commands.command()
 async def artifacts(ctx):
     raw = requests.get('https://api.genshin.dev/artifacts')
     data = raw.json()
     desc = ', '.join([i.capitalize() for i in data])
     await ctx.send(embed=discord.Embed(title='Artifact Sets', description=desc))
 
-@bot.command()
+@commands.command()
 async def weapons(ctx):
     raw = requests.get('https://api.genshin.dev/weapons')
     data = raw.json()
@@ -35,7 +48,7 @@ class GenshinMenu(menus.ListPageSource):
     async def format_page(self, menu, entry):
         return entry
 
-@bot.command()
+@commands.command()
 async def character(ctx, name):
     name = name.lower()
     names = requests.get(f'https://api.genshin.dev/characters')
@@ -80,7 +93,7 @@ async def character(ctx, name):
     menu = menus.MenuPages(GenshinMenu(embeds, per_page=1))
     await menu.start(ctx)
 
-@bot.command()
+@commands.command()
 async def artifact(ctx, name):
     name = name.lower()
     names = requests.get(f'https://api.genshin.dev/artifacts')
@@ -100,7 +113,7 @@ async def artifact(ctx, name):
     embed.set_thumbnail(url=f'https://rerollcdn.com/GENSHIN/Gear/{name.replace("-", "_")}.png')
     await ctx.send(embed=embed)
 
-@bot.command()
+@commands.command()
 async def weapon(ctx, name):
     name = name.lower()
     names = requests.get(f'https://api.genshin.dev/weapons')
