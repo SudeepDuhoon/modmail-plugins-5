@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from banners import available_banners
+from banners import event_banners
 
 class Wish(commands.Cog):
     def __init__(self, bot):
@@ -8,8 +8,8 @@ class Wish(commands.Cog):
 
     @commands.command(name="wish")
     async def do_wish(self, ctx, banner, *quantity):
-        if banner.lower() in available_banners:
-            banner = available_banners[banner.lower()]()
+        if banner.lower() in event_banners:
+            banner = event_banners[banner.lower()]()
         else:
             await ctx.reply(f"Banner `{banner} not available.`")
             return
