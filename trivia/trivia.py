@@ -152,7 +152,7 @@ class TriviaSession:
                 await self.end_game()
                 break
         else:
-            await self.send_normal_reply(bold("There are no more questions!"))
+            await self.send_error_reply(bold("There are no more questions!"))
             await self.end_game()
 
     async def _send_startup_msg(self):
@@ -164,7 +164,7 @@ class TriviaSession:
             else:
                 title = f"`{name}`"
             list_names.append(title)
-        await self.send_normal_reply(
+        await self.send_success_reply(
             bold("Starting Trivia:") + " {list_names}".format(list_names=", ".join(list_names))
         )
 
@@ -298,6 +298,14 @@ class TriviaSession:
         perms = self.ctx.channel.permissions_for(self.ctx.me)
         if perms.embed_links:
             embed = discord.Embed(color=15383739, description=description)
+            await self.ctx.send(embed=embed)
+        else:
+            await self.ctx.send(description)
+            
+    async def send_success_reply(self, description):
+        perms = self.ctx.channel.permissions_for(self.ctx.me)
+        if perms.embed_links:
+            embed = discord.Embed(color=10731148, description=description)
             await self.ctx.send(embed=embed)
         else:
             await self.ctx.send(description)
@@ -589,7 +597,7 @@ class Trivia(commands.Cog):
         stop_message = bold("Trivia stopped.")
         if ctx.channel.permissions_for(ctx.me).embed_links:
             await ctx.send(
-                embed=discord.Embed(color=15383739, description=stop_message)
+                embed=discord.Embed(color=12274003, description=stop_message)
             )
         else:
             await ctx.send(stop_message)
