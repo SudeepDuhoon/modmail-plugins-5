@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from .banners import EventBanner
+from banners.banners import EventBanner
 
 class Wish(commands.Cog):
     def __init__(self, bot):
