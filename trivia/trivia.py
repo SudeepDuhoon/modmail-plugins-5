@@ -152,7 +152,7 @@ class TriviaSession:
                 await self.end_game()
                 break
         else:
-            await self.send_error_reply(bold("There are no more questions! <:yaesad:816552378919682048>"))
+            await self.send_error_reply(bold("There are no more questions... <:yaesad:816552378919682048>"))
             await self.end_game()
 
     async def _send_startup_msg(self):
