@@ -4,7 +4,12 @@ import discord, json, requests
 from discord.ext import commands
 from discord.ext import menus
 
+Cog = getattr(commands, "Cog", object)
+
 class Genshin(commands.Cog):
+    """
+    Genshin?
+    """
     def __init__(self, bot):
         self.bot = bot
 
