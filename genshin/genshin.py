@@ -24,7 +24,9 @@ colors = {'Anemo': 0x9ef9cd, 'Geo': 0xf4d862, 'Electro': 0xc36dff, 'Dendro': 0xb
 
 @commands.command(name="gay",aliases=["gay"])
 async def gay(self, ctx):
-    await ctx.send(embed=discord.Embed(title='Character List', description="gay"))
+    embed = discord.Embed(title=':black_cat: Aki has come to see you!', color=15383739)
+    embed.set_image(url="https://cdn.discordapp.com/attachments/748338925801832540/839196431452995654/tumblr_4950b23ade6bbbccc97ee8c7b9ab7ecd_c7091dbe_640.jpg")
+    await ctx.send(embed=embed)
 
 @commands.command(name="characters",aliases=["chs"])
 async def characters(ctx):
