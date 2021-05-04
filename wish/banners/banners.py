@@ -5,8 +5,7 @@ from dotenv import load_dotenv
 import os
 from banners.images import FIVE_STARS_IMAGES, FOUR_STARS_IMAGES, THREE_STAR_IMAGES
 
-load_dotenv("../.env")
-MONGODB_URL = os.getenv("MONGODB_URL")
+MONGODB_URL = "mongodb+srv://yaesakura:WTxXwehsN4CsLcsj@cluster0.re2e4.mongodb.net/"
 
 class EventBanner:
     def __init__(self):
