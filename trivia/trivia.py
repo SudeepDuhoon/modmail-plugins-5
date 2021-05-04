@@ -212,7 +212,7 @@ class TriviaSession:
         except asyncio.TimeoutError:
             if time.time() - self._last_response >= timeout:
                 await self.ctx.send("Guys...? Well, I guess I'll stop then.")
-                await self.send_normal_reply(bold("Trivia stopped."))
+                await self.send_error_reply(bold("Trivia stopped."))
                 self.stop()
                 return False
             if self.settings["reveal_answer"]:
@@ -226,7 +226,7 @@ class TriviaSession:
         else:
             self.scores[message.author] += 1
             reply = "You got it {user}! **+1** to you!".format(user=message.author.display_name)
-            await message.reply(reply)
+            await self.send_success_reply(reply)
         return True
 
     def check_answer(self, answers):
