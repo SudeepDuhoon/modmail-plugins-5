@@ -297,7 +297,7 @@ class TriviaSession:
     async def send_normal_reply(self, description):
         perms = self.ctx.channel.permissions_for(self.ctx.me)
         if perms.embed_links:
-            embed = discord.Embed(color=15383739, description=description)
+            embed = discord.Embed(color=self.ctx.bot.main_color, description=description)
             await self.ctx.send(embed=embed)
         else:
             await self.ctx.send(description)
@@ -435,7 +435,7 @@ class Trivia(commands.Cog):
             "Allow lists to override settings: `{allow_override}`".format(**settings),
         )
         embed = discord.Embed(
-            color=15383739, title="Current settings", description=desc
+            color=self.ctx.bot.main_color, title="Current settings", description=desc
         )
         await ctx.send(embed=embed)
 
@@ -614,7 +614,7 @@ class Trivia(commands.Cog):
             if continued:
                 title += " (Continued)"
             embed = discord.Embed(
-                title=title, color=15383739, description=description
+                title=title, color=self.ctx.bot.main_color, description=description
             )
             len_list = len(lists)
             footer_text = f"Found {plural(len_list):trivia category|trivia categories}"
