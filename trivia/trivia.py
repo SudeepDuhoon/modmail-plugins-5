@@ -435,7 +435,7 @@ class Trivia(commands.Cog):
             "Allow lists to override settings: `{allow_override}`".format(**settings),
         )
         embed = discord.Embed(
-            color=self.ctx.bot.main_color, title="Current settings", description=desc
+            color=self.bot.main_color, title="Current settings", description=desc
         )
         await ctx.send(embed=embed)
 
@@ -614,7 +614,7 @@ class Trivia(commands.Cog):
             if continued:
                 title += " (Continued)"
             embed = discord.Embed(
-                title=title, color=self.ctx.bot.main_color, description=description
+                title=title, color=self.bot.main_color, description=description
             )
             len_list = len(lists)
             footer_text = f"Found {plural(len_list):trivia category|trivia categories}"
