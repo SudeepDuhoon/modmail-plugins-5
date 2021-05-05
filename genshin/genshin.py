@@ -4,36 +4,15 @@ import discord, json, requests
 from discord.ext import commands
 from discord.ext import menus
 
-Cog = getattr(commands, "Cog", object)
-
 class Genshin(commands.Cog):
-    """
-    Genshin?
-    """
     def __init__(self, bot):
         self.bot = bot
-
-#  $$$$$$\                                $$\       $$\
-# $$  __$$\                               $$ |      \__|
-# $$ /  \__| $$$$$$\  $$$$$$$\   $$$$$$$\ $$$$$$$\  $$\ $$$$$$$\
-# $$ |$$$$\ $$  __$$\ $$  __$$\ $$  _____|$$  __$$\ $$ |$$  __$$\
-# $$ |\_$$ |$$$$$$$$ |$$ |  $$ |\$$$$$$\  $$ |  $$ |$$ |$$ |  $$ |
-# $$ |  $$ |$$   ____|$$ |  $$ | \____$$\ $$ |  $$ |$$ |$$ |  $$ |
-# \$$$$$$  |\$$$$$$$\ $$ |  $$ |$$$$$$$  |$$ |  $$ |$$ |$$ |  $$ |
-#  \______/  \_______|\__|  \__|\_______/ \__|  \__|\__|\__|  \__|
-
 
 # color codes for elements and rarity
 colors = {'Anemo': 0x9ef9cd, 'Geo': 0xf4d862, 'Electro': 0xc36dff, 'Dendro': 0xb1ea26, 'Hydro': 0x079fff, 'Pyro': 0xff8739, 'Cryo': 0xccfffe,\
             5: 0xff8000, 4: 0xa335ee, 3: 0x0070dd, 2: 0x1eff00, 1: 0xffffff}
 
-@commands.command(name="gay",aliases=["gay"])
-async def gay(self, ctx):
-    embed = discord.Embed(title=':black_cat: Aki has come to see you!', color=15383739)
-    embed.set_image(url="https://cdn.discordapp.com/attachments/748338925801832540/839196431452995654/tumblr_4950b23ade6bbbccc97ee8c7b9ab7ecd_c7091dbe_640.jpg")
-    await ctx.send(embed=embed)
-
-@commands.command(name="characters",aliases=["chs"])
+@commands.command()
 async def characters(ctx):
     raw = requests.get('https://api.genshin.dev/characters')
     data = raw.json()
@@ -58,7 +37,7 @@ class GenshinMenu(menus.ListPageSource):
     async def format_page(self, menu, entry):
         return entry
 
-@commands.command()
+@commands.command(name="test")
 async def character(ctx, name):
     name = name.lower()
     names = requests.get(f'https://api.genshin.dev/characters')
