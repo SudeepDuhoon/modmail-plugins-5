@@ -81,6 +81,7 @@ class TriviaSession:
         self.count = 0
         self._last_response = time.time()
         self._task = None
+        self.color = self.bot.main_color
 
     @classmethod
     def start(cls, ctx, question_list, settings) -> "TriviaSession":
@@ -143,7 +144,7 @@ class TriviaSession:
             msg = question
             title = bold("❓ ⋅⊱ Question #{num}!".format(num=self.count))
             await self.ctx.send(
-                embed=discord.Embed(color=15383739, title=title, description=msg)
+                embed=discord.Embed(color=self.color, title=title, description=msg)
             )
             continue_ = await self.wait_for_answer(answers, delay, timeout)
             if continue_ is False:
@@ -378,6 +379,7 @@ class Trivia(commands.Cog):
         self.trivia_sessions = []
         self.db = bot.plugin_db.get_partition(self)
         self._config_cache = {}
+        self.color = self.bot.main_color
 
         asyncio.create_task(self.populate_config_cache())
 
