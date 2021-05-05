@@ -8,10 +8,6 @@ class Genshin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.color = self.bot.main_color
-
-# color codes for elements and rarity
-colors = {'Anemo': 0x9ef9cd, 'Geo': 0xf4d862, 'Electro': 0xc36dff, 'Dendro': 0xb1ea26, 'Hydro': 0x079fff, 'Pyro': 0xff8739, 'Cryo': 0xccfffe,\
-            5: 0xff8000, 4: 0xa335ee, 3: 0x0070dd, 2: 0x1eff00, 1: 0xffffff}
    
 @commands.command(name="bean3", aliases=['fban3'])
 async def bean(self, ctx, member: discord.Member = None, reason = None):
