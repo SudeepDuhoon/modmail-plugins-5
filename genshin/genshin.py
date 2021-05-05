@@ -37,7 +37,7 @@ class GenshinMenu(menus.ListPageSource):
     async def format_page(self, menu, entry):
         return entry
 
-@commands.command(name="test")
+@commands.command()
 async def character(ctx, name):
     name = name.lower()
     names = requests.get(f'https://api.genshin.dev/characters')
