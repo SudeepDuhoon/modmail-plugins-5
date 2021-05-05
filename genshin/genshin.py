@@ -7,10 +7,27 @@ from discord.ext import menus
 class Genshin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.color = self.bot.main_color
 
 # color codes for elements and rarity
 colors = {'Anemo': 0x9ef9cd, 'Geo': 0xf4d862, 'Electro': 0xc36dff, 'Dendro': 0xb1ea26, 'Hydro': 0x079fff, 'Pyro': 0xff8739, 'Cryo': 0xccfffe,\
             5: 0xff8000, 4: 0xa335ee, 3: 0x0070dd, 2: 0x1eff00, 1: 0xffffff}
+
+    @commands.command(name="bean3", aliases=['fban3'])
+    async def bean(self, ctx, member: discord.Member = None, reason = None):
+        await ctx.message.delete()
+        if not member:
+            embed = discord.Embed(title="Error", description="Please provide a user to bean!", color=self.bot.error_color)
+            await ctx.send(embed=embed)
+        else:
+            if not reason:
+                embed = discord.Embed(title="Bean | case 420", description=f"{member.mention} Has been beaned!", color=self.color)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/819994849838366771.png")
+                await ctx.send(embed=embed)
+            else:
+                embed = discord.Embed(title="Bean | case 69", description=f"{member.mention} Has been beaned for {reason}!", color=self.color)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/819994849838366771.png")
+                await ctx.send(embed=embed)   
 
 @commands.command()
 async def characters(ctx):
