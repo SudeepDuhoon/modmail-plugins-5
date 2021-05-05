@@ -81,7 +81,6 @@ class TriviaSession:
         self.count = 0
         self._last_response = time.time()
         self._task = None
-        self.color = self.bot.main_color
 
     @classmethod
     def start(cls, ctx, question_list, settings) -> "TriviaSession":
