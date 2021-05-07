@@ -1,7 +1,5 @@
 import os
 import discord
-from keep_alive import keep_alive
-from dotenv import load_dotenv
 import requests
 import json
 from discord.ext import commands
