@@ -1,4 +1,6 @@
-import discord, json,
+import discord
+import json
+import requests
 from discord.ext import commands
 
 class Genshin(commands.Cog):
