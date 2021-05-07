@@ -9,7 +9,10 @@ class Genshin(commands.Cog):
         self.color = self.bot.main_color
         
 @commands.command(name="weapon",aliases=["wpn"])
-async def _weapon(ctx, *, arg=None): 
+async def _weapon(ctx, *, arg=None):
+      """
+      Retrieves a random photo of Yae Sakura and Kallen Kaslana.
+      """
     if arg == None:
       def listToString(wl):  
         str1 = "\n" 
