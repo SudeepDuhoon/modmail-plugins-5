@@ -9,7 +9,7 @@ class Genshin(commands.Cog):
         self.bot = bot
 
 @commands.command()
-async def about2(ctx):
+async def about2(self, ctx):
     embeded = discord.Embed(title='GI Bot',description="Currently we only provide Character's Brief Details. Feel free to support us with idea in [Github](https://github.com/rizkidn17/GenshinDiscordBot) or [Website](https://rizkidn17.github.io/GenshinDiscordBot/)")
     embeded.set_footer(text='Disclaimer: This bot only for personal use and not related with Official Genshin Impact and Mihoyo')
     await ctx.send(embed=embeded)
