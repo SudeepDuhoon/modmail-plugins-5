@@ -4,6 +4,10 @@ import requests
 import json
 from discord.ext import commands
 
+class Genshin(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
 API = 'https://api.genshin.dev/{}'
 
 char = API.format("characters/{}")
@@ -19,10 +23,6 @@ artlist = requests.get('https://api.genshin.dev/artifacts').text
 al = json.loads(artlist)
 wplist = requests.get('https://api.genshin.dev/weapons').text
 wl = json.loads(wplist)
-
-class Genshin(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
 
 @commands.command()
 async def character(ctx, *, arg=None):
