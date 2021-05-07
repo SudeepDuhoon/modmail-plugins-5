@@ -8,11 +8,15 @@ class Genshin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-@commands.command()
-async def about2(self, ctx):
-    embeded = discord.Embed(title='GI Bot',description="Currently we only provide Character's Brief Details. Feel free to support us with idea in [Github](https://github.com/rizkidn17/GenshinDiscordBot) or [Website](https://rizkidn17.github.io/GenshinDiscordBot/)")
-    embeded.set_footer(text='Disclaimer: This bot only for personal use and not related with Official Genshin Impact and Mihoyo')
-    await ctx.send(embed=embeded)
+    @commands.command()
+    async def hello(self, ctx, *, member: discord.Member = None):
+        """Says hello"""
+        member = member or ctx.author
+        if self._last_member is None or self._last_member.id != member.id:
+            await ctx.send('Hello {0.name}~'.format(member))
+        else:
+            await ctx.send('Hello {0.name}... This feels familiar.'.format(member))
+        self._last_member = member
     
 def setup(bot):
     bot.add_cog(Genshin(bot))
