@@ -29,14 +29,9 @@ class Genshin(commands.Cog):
         """
         Retrieves a random photo of Yae Sakura and Kallen Kaslana.
         """
-        embed = discord.Embed(color=15383739)
+        embed = discord.Embed(color=15383739, title='GI Bot', description="Currently we only provide Character's Brief Details. Feel free to support us with idea in [Github](https://github.com/rizkidn17/GenshinDiscordBot) or [Website](https://rizkidn17.github.io/GenshinDiscordBot/)")
         await ctx.send(embed=embed)
         
-    @commands.command()
-    async def about(ctx):
-        embed = discord.Embed(title='GI Bot',description="Currently we only provide Character's Brief Details. Feel free to support us with idea in [Github](https://github.com/rizkidn17/GenshinDiscordBot) or [Website](https://rizkidn17.github.io/GenshinDiscordBot/)")
-        embed.set_footer(text='Disclaimer: This bot only for personal use and not related with Official Genshin Impact and Mihoyo')
-        await ctx.send(embed)
     
 def setup(bot):
     bot.add_cog(Genshin(bot))
