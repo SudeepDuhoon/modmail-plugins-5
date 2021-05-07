@@ -22,11 +22,11 @@ class Genshin(commands.Cog):
                 embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/819994849838366771.png")
                 await ctx.send(embed=embed)          
                 
-@commands.command()
-async def about(ctx):
-    embeded = discord.Embed(title='GI Bot',description="Currently we only provide Character's Brief Details. Feel free to support us with idea in [Github](https://github.com/rizkidn17/GenshinDiscordBot) or [Website](https://rizkidn17.github.io/GenshinDiscordBot/)")
-    embeded.set_footer(text='Disclaimer: This bot only for personal use and not related with Official Genshin Impact and Mihoyo')
-    await ctx.send(embed=embeded)
+    @commands.command()
+    async def about(ctx):
+        embeded = discord.Embed(title='GI Bot',description="Currently we only provide Character's Brief Details. Feel free to support us with idea in [Github](https://github.com/rizkidn17/GenshinDiscordBot) or [Website](https://rizkidn17.github.io/GenshinDiscordBot/)")
+        embeded.set_footer(text='Disclaimer: This bot only for personal use and not related with Official Genshin Impact and Mihoyo')
+        await ctx.send(embed=embeded)
         
 def setup(bot):
     bot.add_cog(Genshin(bot))
