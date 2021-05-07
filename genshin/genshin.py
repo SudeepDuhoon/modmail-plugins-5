@@ -25,7 +25,7 @@ class Genshin(commands.Cog):
                 await ctx.send(embed=embed)          
                 
     @commands.command(name="yuri3",aliases=["gaytime3"])
-    async def _gaytime(self, ctx):
+    async def gaytime(self, ctx):
         """
         Retrieves a random photo of Yae Sakura and Kallen Kaslana.
         """
