@@ -152,7 +152,7 @@ class TriviaSession:
                 await self.end_game()
                 break
         else:
-            await self.send_error_reply(bold("There are no more questions... <:yaesad:816552378919682048>"))
+            await self.send_error_reply(bold("There are no more questions..."))
             await self.end_game()
 
     async def _send_startup_msg(self):
@@ -211,7 +211,7 @@ class TriviaSession:
             )
         except asyncio.TimeoutError:
             if time.time() - self._last_response >= timeout:
-                await self.ctx.send("Guys...? Well, I guess I'll stop then. <:yaesad:816552378919682048>")
+                await self.ctx.send("Guys...? Well, I guess I'll stop then.")
                 await self.send_error_reply(bold("Trivia stopped."))
                 self.stop()
                 return False
