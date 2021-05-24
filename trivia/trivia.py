@@ -416,13 +416,13 @@ class Trivia(commands.Cog):
         return self._config_cache[guild_id]
 
     @commands.group(invoke_without_command=True)
-    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
+    @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def triviaset(self, ctx: commands.Context):
         """Manage Trivia settings."""
         await ctx.send_help(ctx.command)
 
     @triviaset.command(name="showsettings")
-    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
+    @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def triviaset_showsettings(self, ctx: commands.Context):
         """Show the current trivia settings."""
         settings = await self.db.find_one({"_id": ctx.guild.id})
@@ -440,7 +440,7 @@ class Trivia(commands.Cog):
         await ctx.send(embed=embed)
 
     @triviaset.command(name="maxscore")
-    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
+    @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def triviaset_max_score(self, ctx: commands.Context, score: int):
         """Set the total points required to win."""
         if score < 0:
@@ -452,7 +452,7 @@ class Trivia(commands.Cog):
         await ctx.send(embed=embed)
 
     @triviaset.command(name="timelimit")
-    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
+    @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def triviaset_timelimit(self, ctx: commands.Context, seconds: int):
         """Set the maximum seconds permitted to answer a question."""
         if seconds < 4.0:
@@ -464,7 +464,7 @@ class Trivia(commands.Cog):
         await ctx.send(embed=embed)
 
     @triviaset.command(name="stopafter")
-    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
+    @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def triviaset_stopafter(self, ctx: commands.Context, seconds: int):
         """Set how long until trivia stops due to no response."""
         settings = self._config_cache[ctx.guild.id]
@@ -481,7 +481,7 @@ class Trivia(commands.Cog):
         await ctx.send(embed=embed)
 
     @triviaset.command(name="override")
-    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
+    @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def triviaset_allowoverride(self, ctx: commands.Context, enabled: bool):
         """Allow/disallow trivia lists to override settings."""
         new_settings = {"allow_override": enabled}
@@ -497,7 +497,7 @@ class Trivia(commands.Cog):
         await ctx.send(embed=embed)
 
     @triviaset.command(name="botplays", usage="<true_or_false>")
-    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
+    @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def trivaset_bot_plays(self, ctx: commands.Context, enabled: bool):
         """
         Set whether or not the bot gains points.
@@ -514,7 +514,7 @@ class Trivia(commands.Cog):
         await ctx.send(embed=embed)
 
     @triviaset.command(name="revealanswer", usage="<true_or_false>")
-    @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
+    @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def trivaset_reveal_answer(self, ctx: commands.Context, enabled: bool):
         """
         Set whether or not the answer is revealed.
