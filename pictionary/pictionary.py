@@ -141,9 +141,9 @@ class PictionarySession:
                 await asyncio.sleep(1.5)  # Decreased to 1.5, original was 3.
             self.count += 1
             msg = question
-            title = bold("❓ ⋅⊱ Question #{num}! Name the character, weapon, item, or location in the picture:".format(num=self.count))
+            title = bold("❓ ⋅⊱ Question #{num}!".format(num=self.count))
             await self.ctx.send(
-                embed=discord.Embed(color=self.ctx.bot.main_color, title=title).set_image(url=msg)
+                embed=discord.Embed(color=self.ctx.bot.main_color, title=title, description="Name the character, weapon, item, or location in the picture:").set_image(url=msg)
             )
             continue_ = await self.wait_for_answer(answers, delay, timeout)
             if continue_ is False:
