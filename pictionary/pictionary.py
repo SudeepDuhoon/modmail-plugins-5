@@ -38,12 +38,12 @@ _FAIL_MESSAGES = (
 )
 
 
-# A class to handle a Trivia session.
-class TriviaSession:
+# A class to handle a Pictionary session.
+class PictionarySession:
     """
-    Class to run a session of trivia with the user.
+    Class to run a session of Pictionary with the user.
 
-    To run the trivia session immediately, use `TriviaSession.start` instead of
+    To run the Pictionary session immediately, use `PictionarySession.start` instead of
     instantiating directly.
 
     Attributes
@@ -56,7 +56,7 @@ class TriviaSession:
         A list of tuples mapping questions (`str`) to answers (`list` of
         `str`).
     settings : `dict`
-        Settings for the trivia session, with values for the following:
+        Settings for the Pictionary session, with values for the following:
          - ``max_score`` (`int`)
          - ``delay`` (`float`)
          - ``timeout`` (`float`)
@@ -83,9 +83,9 @@ class TriviaSession:
         self._task = None
 
     @classmethod
-    def start(cls, ctx, question_list, settings) -> "TriviaSession":
+    def start(cls, ctx, question_list, settings) -> "PictionarySession":
         """
-        Create and start a trivia session.
+        Create and start a Pictionary session.
 
         This allows the session to manage the running and cancellation of its
         own tasks.
@@ -93,16 +93,16 @@ class TriviaSession:
         Parameters
         ----------
         ctx : `commands.Context`
-            Same as `TriviaSession.ctx`
+            Same as `PictionarySession.ctx`
         question_list : `dict`
-            Same as `TriviaSession.question_list`
+            Same as `PictionarySession.question_list`
         settings : `dict`
-            Same as `TriviaSession.settings`
+            Same as `PictionarySession.settings`
 
         Returns
         -------
-        TriviaSession
-            The new trivia session being run.
+        PictionarySession
+            The new Pictionary session being run.
         """
         session = cls(ctx, question_list, settings)
         loop = ctx.bot.loop
@@ -117,9 +117,9 @@ class TriviaSession:
         except asyncio.CancelledError:
             pass
         except Exception as exc:
-            logger.error("A trivia session has encountered an error.\n", exc_info=exc)
+            logger.error("A Pictionary session has encountered an error.\n", exc_info=exc)
             error_msg = (
-                "An unexpected error occurred in the trivia session.\n"
+                "An unexpected error occurred in the Pictionary session.\n"
                 "Check your console or logs for details."
             )
             asyncio.create_task(self.send_error_reply(error_msg))
@@ -127,10 +127,10 @@ class TriviaSession:
 
     async def run(self):
         """
-        Run the trivia session.
+        Run the Pictionary session.
 
-        In order for the trivia session to be stopped correctly, this should
-        only be called internally by `TriviaSession.start`.
+        In order for the Pictionary session to be stopped correctly, this should
+        only be called internally by `PictionarySession.start`.
         """
         await self._send_startup_msg()
         max_score = self.settings["max_score"]
@@ -160,12 +160,12 @@ class TriviaSession:
         for idx, tup in enumerate(self.settings["lists"].items()):
             name, author = tup
             if author:
-                title = "`{trivia_list} (by {author})`".format(trivia_list=name, author=author)
+                title = "`{Pictionary_list} (by {author})`".format(Pictionary_list=name, author=author)
             else:
                 title = f"`{name}`"
             list_names.append(title)
         await self.send_success_reply(
-            bold("Starting Trivia:") + " {list_names}".format(list_names=", ".join(list_names))
+            bold("Starting Pictionary:") + " {list_names}".format(list_names=", ".join(list_names))
         )
 
     def _iter_questions(self):
@@ -212,7 +212,7 @@ class TriviaSession:
         except asyncio.TimeoutError:
             if time.time() - self._last_response >= timeout:
                 await self.ctx.send("Guys...? Well, I guess I'll stop then.")
-                await self.send_error_reply(bold("Trivia stopped."))
+                await self.send_error_reply(bold("Pictionary stopped."))
                 self.stop()
                 return False
             if self.settings["reveal_answer"]:
@@ -272,7 +272,7 @@ class TriviaSession:
         return _pred
 
     async def end_game(self):
-        """End the trivia session and display scrores."""
+        """End the Pictionary session and display scrores."""
         if self.scores:
             await self.send_table()
         self.stop()
@@ -285,14 +285,14 @@ class TriviaSession:
         await self.ctx.send(code_block(table, lang="diff"))
 
     def stop(self):
-        """Stop the trivia session, without showing scores."""
-        self.ctx.bot.dispatch("trivia_end", self)
+        """Stop the Pictionary session, without showing scores."""
+        self.ctx.bot.dispatch("Pictionary_end", self)
 
     def force_stop(self):
         """Cancel whichever tasks this session is running."""
         self._task.cancel()
         channel = self.ctx.channel
-        logger.debug("Force stopping trivia session; <#%s> in %s", channel.id, channel.guild.id)
+        logger.debug("Force stopping Pictionary session; <#%s> in %s", channel.id, channel.guild.id)
 
     async def send_normal_reply(self, description):
         perms = self.ctx.channel.permissions_for(self.ctx.me)
@@ -354,8 +354,8 @@ class TriviaSession:
 
 
 # Actual Cog
-class Trivia(commands.Cog):
-    """Play trivia with friends!"""
+class Pictionary(commands.Cog):
+    """Play Pictionary with friends!"""
 
     config_keys = {
         "max_score": 10,
@@ -375,7 +375,7 @@ class Trivia(commands.Cog):
             The Modmail bot.
         """
         self.bot = bot
-        self.trivia_sessions = []
+        self.Pictionary_sessions = []
         self.db = bot.plugin_db.get_partition(self)
         self._config_cache = {}
         self.color = self.bot.main_color
@@ -417,14 +417,14 @@ class Trivia(commands.Cog):
 
     @commands.group(invoke_without_command=True)
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def triviaset(self, ctx: commands.Context):
-        """Manage Trivia settings."""
+    async def Pictionaryset(self, ctx: commands.Context):
+        """Manage Pictionary settings."""
         await ctx.send_help(ctx.command)
 
-    @triviaset.command(name="showsettings")
+    @Pictionaryset.command(name="showsettings")
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def triviaset_showsettings(self, ctx: commands.Context):
-        """Show the current trivia settings."""
+    async def Pictionaryset_showsettings(self, ctx: commands.Context):
+        """Show the current Pictionary settings."""
         settings = await self.db.find_one({"_id": ctx.guild.id})
         desc = str(
             "Bot gains points: `{bot_plays}`\n"
@@ -439,9 +439,9 @@ class Trivia(commands.Cog):
         )
         await ctx.send(embed=embed)
 
-    @triviaset.command(name="maxscore")
+    @Pictionaryset.command(name="maxscore")
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def triviaset_max_score(self, ctx: commands.Context, score: int):
+    async def Pictionaryset_max_score(self, ctx: commands.Context, score: int):
         """Set the total points required to win."""
         if score < 0:
             raise commands.BadArgument("Score must be greater than `0`.")
@@ -451,9 +451,9 @@ class Trivia(commands.Cog):
         embed = discord.Embed(color=10731148, description=desc)
         await ctx.send(embed=embed)
 
-    @triviaset.command(name="timelimit")
+    @Pictionaryset.command(name="timelimit")
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def triviaset_timelimit(self, ctx: commands.Context, seconds: int):
+    async def Pictionaryset_timelimit(self, ctx: commands.Context, seconds: int):
         """Set the maximum seconds permitted to answer a question."""
         if seconds < 4.0:
             raise commands.BadArgument("Must be at least `4 seconds`.")
@@ -463,40 +463,40 @@ class Trivia(commands.Cog):
         embed = discord.Embed(color=10731148, description=desc)
         await ctx.send(embed=embed)
 
-    @triviaset.command(name="stopafter")
+    @Pictionaryset.command(name="stopafter")
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def triviaset_stopafter(self, ctx: commands.Context, seconds: int):
-        """Set how long until trivia stops due to no response."""
+    async def Pictionaryset_stopafter(self, ctx: commands.Context, seconds: int):
+        """Set how long until Pictionary stops due to no response."""
         settings = self._config_cache[ctx.guild.id]
         if seconds < settings["delay"]:
             raise commands.BadArgument("Must be larger than the answer time limit.")
         new_settings = {"timeout": seconds}
         await self.update_config(ctx, new_settings)
         desc = (
-            "Done. Trivia sessions will now time out after {num} seconds of no responses.".format(
+            "Done. Pictionary sessions will now time out after {num} seconds of no responses.".format(
                 num=seconds
             )
         )
         embed = discord.Embed(color=10731148, description=desc)
         await ctx.send(embed=embed)
 
-    @triviaset.command(name="override")
+    @Pictionaryset.command(name="override")
     @checks.has_permissions(PermissionLevel.SUPPORTER)
-    async def triviaset_allowoverride(self, ctx: commands.Context, enabled: bool):
-        """Allow/disallow trivia lists to override settings."""
+    async def Pictionaryset_allowoverride(self, ctx: commands.Context, enabled: bool):
+        """Allow/disallow Pictionary lists to override settings."""
         new_settings = {"allow_override": enabled}
         await self.update_config(ctx, new_settings)
 
         if enabled:
-            desc = "Done. Trivia lists can now override the trivia settings for this server."
+            desc = "Done. Pictionary lists can now override the Pictionary settings for this server."
         else:
             desc = (
-                "Done. Trivia lists can no longer override the trivia settings for this " "server."
+                "Done. Pictionary lists can no longer override the Pictionary settings for this " "server."
             )
         embed = discord.Embed(color=10731148, description=desc)
         await ctx.send(embed=embed)
 
-    @triviaset.command(name="botplays", usage="<true_or_false>")
+    @Pictionaryset.command(name="botplays", usage="<true_or_false>")
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def trivaset_bot_plays(self, ctx: commands.Context, enabled: bool):
         """
@@ -509,11 +509,11 @@ class Trivia(commands.Cog):
         if enabled:
             desc = "Done. I'll now gain a point if users don't answer in time."
         else:
-            desc = "Alright, I won't embarass you at trivia anymore."
+            desc = "Alright, I won't embarass you at Pictionary anymore."
         embed = discord.Embed(color=10731148, description=desc)
         await ctx.send(embed=embed)
 
-    @triviaset.command(name="revealanswer", usage="<true_or_false>")
+    @Pictionaryset.command(name="revealanswer", usage="<true_or_false>")
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def trivaset_reveal_answer(self, ctx: commands.Context, enabled: bool):
         """
@@ -533,69 +533,69 @@ class Trivia(commands.Cog):
 
     @commands.group(invoke_without_command=True)
     @checks.has_permissions(PermissionLevel.REGULAR)
-    async def trivia(self, ctx: commands.Context, *categories: str):
+    async def Pictionary(self, ctx: commands.Context, *categories: str):
         """
-        Start trivia session on the specified category.
+        Start Pictionary session on the specified category.
 
-        You may list multiple categories, in which case the trivia will involve
+        You may list multiple categories, in which case the Pictionary will involve
         questions from all of them.
         """
         if not categories:
             return await ctx.send_help(ctx.command)
         categories = [c.lower() for c in categories]
-        session = self._get_trivia_session(ctx.channel)
+        session = self._get_Pictionary_session(ctx.channel)
         if session is not None:
             raise commands.BadArgument(
-                "There is already an ongoing trivia session in this channel."
+                "There is already an ongoing Pictionary session in this channel."
             )
-        trivia_dict = {}
+        Pictionary_dict = {}
         authors = []
         for category in reversed(categories):
             # We reverse the categories so that the first list's config takes
             # priority over the others.
             try:
-                dict_ = self.get_trivia_list(category)
+                dict_ = self.get_Pictionary_list(category)
             except FileNotFoundError:
                 raise commands.BadArgument(
                     (
-                        "Invalid category `{name}`. See `{prefix}trivia list` for a list of "
-                        "trivia categories."
+                        "Invalid category `{name}`. See `{prefix}Pictionary list` for a list of "
+                        "Pictionary categories."
                     ).format(name=category, prefix=self.bot.prefix)
                 )
             except InvalidListError:
                 raise commands.BadArgument(
                     (
-                        "There was an error parsing the trivia list for the `{name}` category. It "
+                        "There was an error parsing the Pictionary list for the `{name}` category. It "
                         "may be formatted incorrectly."
                     ).format(name=category)
                 )
             else:
-                trivia_dict.update(dict_)
-                authors.append(trivia_dict.pop("AUTHOR", None))
+                Pictionary_dict.update(dict_)
+                authors.append(Pictionary_dict.pop("AUTHOR", None))
 
-        if not trivia_dict:
+        if not Pictionary_dict:
             raise commands.BadArgument(
-                "The trivia list was parsed successfully, however it appears to be empty!"
+                "The Pictionary list was parsed successfully, however it appears to be empty!"
             )
 
         settings = self.guild_config(str(ctx.guild.id))
         settings["lists"] = dict(zip(categories, reversed(authors)))
-        session = TriviaSession.start(ctx, trivia_dict, settings)
-        self.trivia_sessions.append(session)
-        logger.debug("New trivia session; <#%s> in %d", ctx.channel.id, ctx.guild.id)
+        session = PictionarySession.start(ctx, Pictionary_dict, settings)
+        self.Pictionary_sessions.append(session)
+        logger.debug("New Pictionary session; <#%s> in %d", ctx.channel.id, ctx.guild.id)
 
     @trivia_stop_check()
-    @trivia.command(name="stop")
+    @Pictionary.command(name="stop")
     @checks.has_permissions(PermissionLevel.REGULAR)
-    async def trivia_stop(self, ctx: commands.Context):
-        """Stop an ongoing trivia session."""
-        session = self._get_trivia_session(ctx.channel)
+    async def Pictionary_stop(self, ctx: commands.Context):
+        """Stop an ongoing Pictionary session."""
+        session = self._get_Pictionary_session(ctx.channel)
         if session is None:
-            raise commands.BadArgument("There is no ongoing trivia session in this channel.")
+            raise commands.BadArgument("There is no ongoing Pictionary session in this channel.")
         await session.end_game()
         session.force_stop()
 
-        stop_message = bold("Trivia stopped.")
+        stop_message = bold("Pictionary stopped.")
         if ctx.channel.permissions_for(ctx.me).embed_links:
             await ctx.send(
                 embed=discord.Embed(color=12274003, description=stop_message)
@@ -603,21 +603,21 @@ class Trivia(commands.Cog):
         else:
             await ctx.send(stop_message)
 
-    @trivia.command(name="list")
+    @Pictionary.command(name="list")
     @checks.has_permissions(PermissionLevel.REGULAR)
-    async def trivia_list(self, ctx: commands.Context):
-        """List available trivia categories."""
+    async def Pictionary_list(self, ctx: commands.Context):
+        """List available Pictionary categories."""
         lists = set(p.stem for p in self._all_lists())
 
         def base_embed(description: str = "", continued: bool = False):
-            title = "Available trivia categories"
+            title = "Available Pictionary categories"
             if continued:
                 title += " (Continued)"
             embed = discord.Embed(
                 title=title, color=self.bot.main_color, description=description
             )
             len_list = len(lists)
-            footer_text = f"Found {plural(len_list):trivia category|trivia categories}"
+            footer_text = f"Found {plural(len_list):Pictionary category|Pictionary categories}"
             embed.set_footer(text=footer_text)
             return embed
 
@@ -635,17 +635,17 @@ class Trivia(commands.Cog):
                     embed.description += desc
                     line += 1
         else:
-            embeds[0].description = "There is no trivia category available."
+            embeds[0].description = "There is no Pictionary category available."
         session = EmbedPaginatorSession(ctx, *embeds)
         await session.run()
 
-    @trivia.command(name="leaderboard", aliases=["lboard", "lb"], invoke_without_command=True)
+    @Pictionary.command(name="leaderboard", aliases=["lboard", "lb"], invoke_without_command=True)
     @checks.has_permissions(PermissionLevel.REGULAR)
-    async def trivia_leaderboard(
+    async def Pictionary_leaderboard(
         self, ctx: commands.Context, sort_by: str = "wins", top: int = 10
     ):
         """
-        Leaderboard for trivia.
+        Leaderboard for Pictionary.
 
         Defaults to the top 10 of this server, sorted by total wins. Use
         subcommands for a more customised leaderboard.
@@ -662,7 +662,7 @@ class Trivia(commands.Cog):
         if key is None:
             raise commands.BadArgument(
                 (
-                    "Unknown field `{field_name}`, see `{prefix}help trivia leaderboard server` "
+                    "Unknown field `{field_name}`, see `{prefix}help Pictionary leaderboard server` "
                     "for valid fields to sort by."
                 ).format(field_name=sort_by, prefix=self.bot.prefix)
             )
@@ -795,22 +795,22 @@ class Trivia(commands.Cog):
         return "\n".join(lines)
 
     @commands.Cog.listener()
-    async def on_trivia_end(self, session: TriviaSession):
+    async def on_Pictionary_end(self, session: PictionarySession):
         """
-        Event for a trivia session ending.
+        Event for a Pictionary session ending.
 
         This method removes the session from this cog's sessions, and
         cancels any tasks which it was running.
 
         Parameters
         ----------
-        session : TriviaSession
+        session : PictionarySession
             The session which has just ended.
         """
         channel = session.ctx.channel
-        logger.debug("Ending trivia session; <#%s> in %s", channel.id, channel.guild.id)
-        if session in self.trivia_sessions:
-            self.trivia_sessions.remove(session)
+        logger.debug("Ending Pictionary session; <#%s> in %s", channel.id, channel.guild.id)
+        if session in self.Pictionary_sessions:
+            self.Pictionary_sessions.remove(session)
         if session.scores:
             await self.update_leaderboard(session)
 
@@ -819,8 +819,8 @@ class Trivia(commands.Cog):
 
         Parameters
         ----------
-        session : TriviaSession
-            The trivia session to update scores from.
+        session : PictionarySession
+            The Pictionary session to update scores from.
         """
         max_score = session.settings["max_score"]
         leaderboard = await self.db.find_one({"_id": "leaderboard"})
@@ -847,8 +847,8 @@ class Trivia(commands.Cog):
             upsert=True,
         )
 
-    def get_trivia_list(self, category: str) -> dict:
-        """Get the trivia list corresponding to the given category.
+    def get_Pictionary_list(self, category: str) -> dict:
+        """Get the Pictionary list corresponding to the given category.
 
         Parameters
         ----------
@@ -873,25 +873,25 @@ class Trivia(commands.Cog):
             else:
                 return dict_
 
-    def _get_trivia_session(self, channel: discord.TextChannel) -> TriviaSession:
+    def _get_Pictionary_session(self, channel: discord.TextChannel) -> PictionarySession:
         return next(
-            (session for session in self.trivia_sessions if session.ctx.channel == channel), None
+            (session for session in self.Pictionary_sessions if session.ctx.channel == channel), None
         )
 
     def _all_lists(self) -> List[Path]:
         return self.get_core_lists()
 
     def cog_unload(self):
-        for session in self.trivia_sessions:
+        for session in self.Pictionary_sessions:
             session.force_stop()
 
     @staticmethod
     def get_core_lists() -> List[Path]:
-        """Return a list of paths for all trivia lists packaged with the bot."""
+        """Return a list of paths for all Pictionary lists packaged with the bot."""
         core_lists_path = Path(__file__).parent.resolve() / "lists"
         return list(core_lists_path.glob("*.yaml"))
 
 
 def setup(bot):
-    """Load Trivia."""
-    bot.add_cog(Trivia(bot))
+    """Load Pictionary."""
+    bot.add_cog(Pictionary(bot))
