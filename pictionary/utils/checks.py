@@ -5,9 +5,9 @@ from core.models import PermissionLevel
 def trivia_stop_check():
     async def predicate(ctx: commands.Context) -> bool:
         # noinspection PyProtectedMember
-        session = ctx.cog._get_trivia_session(ctx.channel)
+        session = ctx.cog._get_pictionary_session(ctx.channel)
         if session is None:
-            predicate.fail_msg = "There is no ongoing trivia session in this channel."
+            predicate.fail_msg = "There is no ongoing pictionary session in this channel."
             return False
 
         author = ctx.author
