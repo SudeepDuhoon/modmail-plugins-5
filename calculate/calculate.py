@@ -223,7 +223,7 @@ class CalculateTree(Transformer):
         return sy.log(n, b)
 
 
-class Calculator(commands.Cog):
+class Calculatorv2(commands.Cog):
     """
     It's working!! FINALLY - Taki.
     """
@@ -278,4 +278,4 @@ class Calculator(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Calculator(bot))
+    bot.add_cog(Calculatorv2(bot))
