@@ -223,7 +223,7 @@ class CalculateTree(Transformer):
         return sy.log(n, b)
 
 
-class Calculatorv2(commands.Cog):
+class Calculator(commands.Cog):
     """
     It's working!! FINALLY - Taki.
     """
@@ -236,7 +236,7 @@ class Calculatorv2(commands.Cog):
 
     @commands.command()
     @checks.has_permissions(PermissionLevel.REGULAR)
-    async def calcv2(self, ctx, *, exp):
+    async def calculate(self, ctx, *, exp):
         """
         Basically a simple calculator-v2. This command is safe.
         """
@@ -278,4 +278,4 @@ class Calculatorv2(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Calculatorv2(bot))
+    bot.add_cog(Calculator(bot))
