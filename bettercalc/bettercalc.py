@@ -236,7 +236,7 @@ class Calculatorv2(commands.Cog):
 
     @commands.command()
     @checks.has_permissions(PermissionLevel.REGULAR)
-    async def calcv2(self, ctx, *, exp):
+    async def calc(self, ctx, *, exp):
         """
         Basically a simple calculator-v2. This command is safe.
         """
