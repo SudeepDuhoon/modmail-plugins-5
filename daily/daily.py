@@ -11,6 +11,9 @@ class FAQ(commands.Cog):
         if datetime.today().isoweekday() == 1:
             embed = discord.Embed(title="gay", description="wow im gay")
             await ctx.send(embed=embed)
+        else:
+            embed = discord.Embed(title="gay", description="wow im gay not")
+            await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(FAQ(bot))
