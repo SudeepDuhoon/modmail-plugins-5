@@ -8,7 +8,7 @@ class FAQ(commands.Cog):
 
     @commands.command()
     async def faq(self, ctx):
-        if datetime.today().isoweekday() == 1:
+        if datetime.today().isoweekday() == 0:
             embed = discord.Embed(title="gay", description="wow im gay")
             await ctx.send(embed=embed)
         else:
