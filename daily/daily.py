@@ -1,7 +1,7 @@
 from discord.ext import commands
 import discord
 
-class Daily(commands.Cog):
+class Help(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -12,4 +12,4 @@ class Daily(commands.Cog):
         await ctx.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(Daily(bot))
+    bot.add_cog(Help(bot))
