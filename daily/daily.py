@@ -7,8 +7,9 @@ class FAQ(commands.Cog):
 
     @commands.command()
     async def faq(self, ctx):
-        embed = discord.Embed(title="gay", description="wow im gay")
-        await ctx.send(embed=embed)
+        if datetime.today().isoweekday() == 1:
+            embed = discord.Embed(title="gay", description="wow im gay")
+            await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(FAQ(bot))
