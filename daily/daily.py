@@ -4,7 +4,6 @@ import discord
 class FAQ(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.color = self.bot.main_color
 
     @commands.command()
     async def faq(self, ctx):
