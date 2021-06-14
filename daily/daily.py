@@ -9,6 +9,7 @@ class Daily(commands.Cog):
     async def help(self, ctx):
         embed = discord.Embed(color=15383739)
         embed = discord.Embed(title="gay", description="wow im gay")
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Daily(bot))
