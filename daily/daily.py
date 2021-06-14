@@ -43,11 +43,13 @@ class Daily(commands.Cog):
             embed = discord.Embed(title="Today's Dailies (Friday)", colour=discord.Colour(0xeabcbb))
             embed.set_image(url="https://cdn.discordapp.com/attachments/815386324658814976/847671599669706762/Friday.png")
             embed.set_footer(text="Dailies reset at 4AM. Check #server·status for a countdown.")
+            await ctx.send(embed=embed)
         if datetime.today().isoweekday() == 6:
             # it is Saturday
             embed = discord.Embed(title="Today's Dailies (Saturday)", colour=discord.Colour(0xeabcbb))
             embed.set_image(url="https://cdn.discordapp.com/attachments/815386324658814976/852729859125018654/Thursday.png")
             embed.set_footer(text="Dailies reset at 4AM. Check #server·status for a countdown.")
+            await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Daily(bot))
