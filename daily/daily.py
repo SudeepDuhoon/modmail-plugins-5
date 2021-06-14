@@ -2,12 +2,12 @@ from discord.ext import commands
 from datetime import date, datetime
 import discord
 
-class FAQ(commands.Cog):
+class Daily(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command()
-    async def faq(self, ctx):
+    async def daily(self, ctx):
         if datetime.today().isoweekday() == 0:
             # it is Sunday
             embed = discord.Embed(title="Sunday", description="It is Sunday.")
@@ -38,4 +38,4 @@ class FAQ(commands.Cog):
             await ctx.send(embed=embed)   
 
 def setup(bot):
-    bot.add_cog(FAQ(bot))
+    bot.add_cog(Daily(bot))
