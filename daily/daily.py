@@ -12,8 +12,8 @@ class FAQ(commands.Cog):
             embed = discord.Embed(title="gay", description="wow im gay")
             await ctx.send(embed=embed)
         else:
-            embed = discord.Embed(title="gay", description="wow im gay not")
-            await ctx.send(embed=embed)
+            tuesday = discord.Embed(title="Tuesday", colour=discord.Colour(0x51c47a), description="boob")
+            await ctx.send(embed=tuesday)   
 
 def setup(bot):
     bot.add_cog(FAQ(bot))
