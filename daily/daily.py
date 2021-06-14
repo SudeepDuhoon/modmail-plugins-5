@@ -5,10 +5,10 @@ class FAQ(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @bot.event
-    async def on_message(message):
-	if message.content == "ur gay":
-		await message.channel.send("pies are better than cakes. change my mind.")
+    @commands.command()
+    async def faq(self, ctx):
+        embed = discord.Embed(title="gay", description="wow im gay")
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(FAQ(bot))
