@@ -6,7 +6,7 @@ class Daily(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def daily(self, ctx, *, message):
+    async def daily(self, ctx):
         embed = discord.Embed(color=15383739)
         embed=discord.Embed(title="gay", description="wow im gay")
         await ctx.send(embed=embed)
