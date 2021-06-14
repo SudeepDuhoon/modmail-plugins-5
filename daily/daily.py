@@ -7,10 +7,7 @@ class FAQ(commands.Cog):
 
     @commands.command()
     async def faq(self, ctx):
-        embed = discord.Embed(color=15383739)
-        embed = discord.Embed(title="gay", description="wow im gay")
-        await ctx.send(embed=embed)
-        embed = discord.Embed(color=15383739)
+        embed = discord.Embed(color=self.ctx.bot.main_color)
         embed = discord.Embed(title="gay", description="wow im gay")
         await ctx.send(embed=embed)
 
