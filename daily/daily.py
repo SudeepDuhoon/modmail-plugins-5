@@ -6,14 +6,9 @@ class Daily(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def daily(self, ctx):
-    if date.today().weekday() == 0:
+    async def help(self, ctx):
         embed = discord.Embed(color=15383739)
         embed = discord.Embed(title="gay", description="wow im gay")
-        await ctx.send(embed=embed)
-    else:
-        embed = discord.Embed(title="Error", description="Please provide a user to bean!")
-        await self.ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Daily(bot))
