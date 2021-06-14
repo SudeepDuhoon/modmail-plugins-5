@@ -1,5 +1,4 @@
 from discord.ext import commands
-import datetime
 import discord
 
 class Daily(commands.Cog):
