@@ -14,7 +14,9 @@ class Daily(commands.Cog):
             await ctx.send(embed=embed)
         if datetime.today().isoweekday() == 1:
             # it is Monday
-            embed = discord.Embed(title="Monday", colour=discord.Colour(0x51c47a), description="It is Monday.")
+            embed = discord.Embed(title="Today's Dailies (Monday)", colour=discord.Colour(0xeabcbb))
+            embed.set_image(url="https://cdn.discordapp.com/attachments/815386324658814976/854084085357871104/Monday.png")
+            embed.set_footer(text="Dailies reset at 4AM. Check #server·status for a countdown.")
             await ctx.send(embed=embed)
         if datetime.today().isoweekday() == 2:
             # it is Tuesday
