@@ -1,6 +1,6 @@
 import logging
 from enum import Enum
-from random import randint,choice
+from random import randint, choice
 import discord
 from discord.ext import commands
 from core import checks
@@ -13,11 +13,12 @@ Cog = getattr(commands, "Cog", object)
 
 logger = logging.getLogger("Modmail")
 
+
 class Misc(Cog):
     """
     Commands that Sage has made for the server.
     """
-  
+
     akiimage = [
         "https://cdn.discordapp.com/attachments/568778270598889472/817536212235059210/20210305_181639.jpg",
         "https://cdn.discordapp.com/attachments/568778270598889472/816921765510905877/20190816_215610.jpg",
@@ -131,22 +132,25 @@ class Misc(Cog):
         "https://cdn.discordapp.com/attachments/568778270598889472/823619090026463292/20210322_140730.jpg",
         "https://cdn.discordapp.com/attachments/568778270598889472/823619088545873930/20210322_140743.jpg",
         "https://cdn.discordapp.com/attachments/568778270598889472/823339403962220594/20210321_193450.jpg",
-        "https://cdn.discordapp.com/attachments/568778270598889472/817535487329566760/20210305_181342.jpg"
+        "https://cdn.discordapp.com/attachments/568778270598889472/817535487329566760/20210305_181342.jpg",
     ]
-    
-    def __init__(self,bot):
+
+    def __init__(self, bot):
         super().__init__()
         self.bot = bot
-        #self.db = bot.plugin_db.get_partition(self)
-  
-    @commands.command(name="aki",aliases=["cat"])
+        # self.db = bot.plugin_db.get_partition(self)
+
+    @commands.command(name="aki", aliases=["cat"])
     async def _aki(self, ctx):
         """
         Retrieves a random photo of Aki, Sage's cat.
         """
-        embed = discord.Embed(title=':black_cat: Aki has come to see you!', color=15383739)
+        embed = discord.Embed(
+            title=":black_cat: Aki has come to see you!", color=15383739
+        )
         embed.set_image(url=choice(self.akiimage))
         await ctx.send(embed=embed)
-      
+
+
 def setup(bot):
     bot.add_cog(Misc(bot))
