@@ -27,11 +27,7 @@ class PostPlugin(commands.Cog):
 
     @post.command()
     @checks.has_permissions(PermissionLevel.ADMIN)
-    async def start(
-        self,
-        ctx: commands.Context,
-        role: typing.Optional[discord.Role]
-    ):
+    async def start(self, ctx: commands.Context, role: typing.Optional[discord.Role]):
         """
         Start an interactive session to create post
         Add the role in the command if you want to enable mentions
@@ -103,8 +99,7 @@ class PostPlugin(commands.Cog):
         elif cancel_check(embed_res) is False and embed_res.content.lower() == "n":
             await ctx.send(
                 embed=await self.generate_embed(
-                    "Okay, let's do a no-embed post."
-                    "\nWhat's the post?"
+                    "Okay, let's do a no-embed post." "\nWhat's the post?"
                 )
             )
             post = await self.bot.wait_for("message", check=check)
@@ -323,7 +318,7 @@ class PostPlugin(commands.Cog):
         self,
         ctx: commands.Context,
         role: typing.Optional[discord.Role],
-        messageedit: int
+        messageedit: int,
     ):
         """
         Edit an existen bot messagge with an interactive session to create post
@@ -409,8 +404,7 @@ class PostPlugin(commands.Cog):
         elif cancel_check(embed_res) is False and embed_res.content.lower() == "n":
             await ctx.send(
                 embed=await self.generate_embed(
-                    "Okay, let's do a no-embed post."
-                    "\nWhat's the post?"
+                    "Okay, let's do a no-embed post." "\nWhat's the post?"
                 )
             )
             post = await self.bot.wait_for("message", check=check)
@@ -577,7 +571,11 @@ class PostPlugin(commands.Cog):
                     message: discord.Message = channel.fetch_message(messageedit)
                     channelv: discord.TextChannel = channel
                 await ctx.send(
-                    embed=await self.generate_embed("Edited ! (https://discordapp.com/channels/{}/{}/{})".format(guild.id, channelv.id, message.id))
+                    embed=await self.generate_embed(
+                        "Edited ! (https://discordapp.com/channels/{}/{}/{})".format(
+                            guild.id, channelv.id, message.id
+                        )
+                    )
                 )
                 await message.edit(embed=embed)
         if role:
@@ -585,9 +583,11 @@ class PostPlugin(commands.Cog):
             grole: discord.Role = guild.get_role(role.id)
             if grole.mentionable is True:
                 await grole.edit(mentionable=False)
+
     @commands.Cog.listener()
     async def on_ready(self):
         pass
+
     @staticmethod
     async def generate_embed(description: str):
         embed = discord.Embed()
