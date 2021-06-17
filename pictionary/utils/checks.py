@@ -7,7 +7,9 @@ def trivia_stop_check():
         # noinspection PyProtectedMember
         session = ctx.cog._get_pictionary_session(ctx.channel)
         if session is None:
-            predicate.fail_msg = "There is no ongoing pictionary session in this channel."
+            predicate.fail_msg = (
+                "There is no ongoing pictionary session in this channel."
+            )
             return False
 
         author = ctx.author
@@ -24,7 +26,8 @@ def trivia_stop_check():
                 if level >= permission_level and level.name in level_permissions:
                     # -1 is for @everyone
                     if -1 in level_permissions[level.name] or any(
-                        str(check.id) in level_permissions[level.name] for check in checkables
+                        str(check.id) in level_permissions[level.name]
+                        for check in checkables
                     ):
                         return True
             return False
