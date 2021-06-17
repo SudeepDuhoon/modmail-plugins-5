@@ -5,7 +5,6 @@
   <a href="https://github.com/ambv/black">
     <img src="https://img.shields.io/badge/Code%20Style-Black-black?style=for-the-badge"></a>
 
-  <strong><i>
-Sakura trees that will never bloom again are removed, but when I look at a tree, all I want is to see it blossom again. Just one more time...</i></strong>
+<div align="center"><strong><i>Sakura trees that will never bloom again are removed, but when I look at a tree, all I want is to see it blossom again. Just one more time...</i></strong></div>
 
 ## :shinto_shrine: ⋅⊱ Narukami Shrine Modmail Plugins
