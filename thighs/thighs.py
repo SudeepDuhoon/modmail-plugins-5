@@ -1,6 +1,6 @@
 import logging
 from enum import Enum
-from random import randint,choice
+from random import randint, choice
 import discord
 from discord.ext import commands
 from core import checks
@@ -13,11 +13,12 @@ Cog = getattr(commands, "Cog", object)
 
 logger = logging.getLogger("Modmail")
 
+
 class Thighs(Cog):
     """
     Commands that Sage has made for the server.
     """
-  
+
     image = [
         "https://i.imgur.com/xUaAxak.png",
         "https://i.imgur.com/RaqNOao.png",
@@ -26,15 +27,15 @@ class Thighs(Cog):
         "https://i.imgur.com/9dNehDs.png",
         "https://i.imgur.com/crRccvJ.png",
         "https://i.imgur.com/EJMitjX.png",
-        "https://i.imgur.com/gSsGYP2.png"
+        "https://i.imgur.com/gSsGYP2.png",
     ]
-    
-    def __init__(self,bot):
+
+    def __init__(self, bot):
         super().__init__()
         self.bot = bot
-        #self.db = bot.plugin_db.get_partition(self)
-  
-    @commands.command(name="thighs",aliases=["thigh"])
+        # self.db = bot.plugin_db.get_partition(self)
+
+    @commands.command(name="thighs", aliases=["thigh"])
     async def _thighs(self, ctx):
         """
         Retrieves a random photo of Honkai Thighs.
@@ -42,6 +43,7 @@ class Thighs(Cog):
         embed = discord.Embed(color=15383739)
         embed.set_image(url=choice(self.image))
         await ctx.send(embed=embed)
-        
+
+
 def setup(bot):
     bot.add_cog(Thighs(bot))
