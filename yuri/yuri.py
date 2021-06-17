@@ -1,6 +1,6 @@
 import logging
 from enum import Enum
-from random import randint,choice
+from random import randint, choice
 import discord
 from discord.ext import commands
 from core import checks
@@ -13,11 +13,12 @@ Cog = getattr(commands, "Cog", object)
 
 logger = logging.getLogger("Modmail")
 
+
 class Yuri(Cog):
     """
     Commands that Sage has made for the server.
     """
-  
+
     image = [
         "https://cdn.discordapp.com/attachments/799069920402341893/833069759120801842/maxresdefault-2.png",
         "https://img3.gelbooru.com//samples/01/f6/sample_01f6d4f8538db12cba435f84f5f35bea.jpg",
@@ -43,15 +44,15 @@ class Yuri(Cog):
         "https://danbooru.me/data/sample/__yae_sakura_theresa_apocalypse_seele_vollerei_yae_sakura_and_otto_apocalypse_honkai_and_1_more_drawn_by_tsubasa_tsubasa__sample-38f6f7b6b14d4673e131dab1e662ba42.jpg",
         "https://danbooru.me/data/sample/__yae_sakura_kallen_kaslana_and_yae_sakura_honkai_and_1_more_drawn_by_791_meiyuewudi__sample-ccdc08bc9c6d103c9d249714b931d081.jpg",
         "https://danbooru.me/data/sample/__yae_sakura_and_kallen_kaslana_honkai_and_2_more_drawn_by_shibanme_tekikumo__sample-a521bdadc742caeb1bf8f60315143011.jpg",
-        "https://safebooru.org//samples/3024/sample_b820a529526c890d5da3786ff121c8fc30e61e97.jpg?3148813"
+        "https://safebooru.org//samples/3024/sample_b820a529526c890d5da3786ff121c8fc30e61e97.jpg?3148813",
     ]
-    
-    def __init__(self,bot):
+
+    def __init__(self, bot):
         super().__init__()
         self.bot = bot
-        #self.db = bot.plugin_db.get_partition(self)
-  
-    @commands.command(name="yuri",aliases=["gaytime"])
+        # self.db = bot.plugin_db.get_partition(self)
+
+    @commands.command(name="yuri", aliases=["gaytime"])
     async def _gaytime(self, ctx):
         """
         Retrieves a random photo of Yae Sakura and Kallen Kaslana.
@@ -59,6 +60,7 @@ class Yuri(Cog):
         embed = discord.Embed(color=15383739)
         embed.set_image(url=choice(self.image))
         await ctx.send(embed=embed)
-      
+
+
 def setup(bot):
     bot.add_cog(Yuri(bot))
