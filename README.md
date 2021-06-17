@@ -4,3 +4,5 @@
   
   <a href="https://github.com/ambv/black">
     <img src="https://img.shields.io/badge/Code%20Style-Black-black?style=for-the-badge"></a>
+
+:shinto_shrine: ⋅⊱ Friends of Narukami Shrine
