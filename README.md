@@ -1,3 +1,9 @@
 lol gay
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+  <a href="https://discord.gg/j5e9p8w">
+    <img src="https://img.shields.io/discord/799069920402341889?color=%237289da&label=.gg%2Fyae&logo=discord&style=for-the-badge" alt="Support">
+  </a>
+  
+  <a href="https://github.com/ambv/black">
+    <img src="https://img.shields.io/badge/Code%20Style-Black-black?style=for-the-badge">
+  </a>
