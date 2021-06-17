@@ -22,6 +22,7 @@ logger = getLogger(__name__)
 
 class InvalidListError(Exception):
     """A Pictionary list file is in invalid format."""
+
     pass
 
 
@@ -117,7 +118,9 @@ class PictionarySession:
         except asyncio.CancelledError:
             pass
         except Exception as exc:
-            logger.error("A pictionary session has encountered an error.\n", exc_info=exc)
+            logger.error(
+                "A pictionary session has encountered an error.\n", exc_info=exc
+            )
             error_msg = (
                 "An unexpected error occurred in the pictionary session.\n"
                 "Check your console or logs for details."
@@ -143,7 +146,11 @@ class PictionarySession:
             msg = question
             title = bold("❓ ⋅⊱ Question #{num}!".format(num=self.count))
             await self.ctx.send(
-                embed=discord.Embed(color=self.ctx.bot.main_color, title=title, description="Name the character, weapon, item, or location in the picture:").set_image(url=msg)
+                embed=discord.Embed(
+                    color=self.ctx.bot.main_color,
+                    title=title,
+                    description="Name the character, weapon, item, or location in the picture:",
+                ).set_image(url=msg)
             )
             continue_ = await self.wait_for_answer(answers, delay, timeout)
             if continue_ is False:
@@ -160,12 +167,15 @@ class PictionarySession:
         for idx, tup in enumerate(self.settings["lists"].items()):
             name, author = tup
             if author:
-                title = "`{pictionary_list} (by {author})`".format(pictionary_list=name, author=author)
+                title = "`{pictionary_list} (by {author})`".format(
+                    pictionary_list=name, author=author
+                )
             else:
                 title = f"`{name}`"
             list_names.append(title)
         await self.send_success_reply(
-            bold("Starting Pictionary:") + " {list_names}".format(list_names=", ".join(list_names))
+            bold("Starting Pictionary:")
+            + " {list_names}".format(list_names=", ".join(list_names))
         )
 
     def _iter_questions(self):
@@ -225,7 +235,9 @@ class PictionarySession:
             await self.ctx.send(reply)
         else:
             self.scores[message.author] += 1
-            reply = "You got it {user}! **+1** to you! 🏆".format(user=message.author.display_name)
+            reply = "You got it {user}! **+1** to you! 🏆".format(
+                user=message.author.display_name
+            )
             await self.send_success_reply(reply)
         return True
 
@@ -292,16 +304,22 @@ class PictionarySession:
         """Cancel whichever tasks this session is running."""
         self._task.cancel()
         channel = self.ctx.channel
-        logger.debug("Force stopping pictionary session; <#%s> in %s", channel.id, channel.guild.id)
+        logger.debug(
+            "Force stopping pictionary session; <#%s> in %s",
+            channel.id,
+            channel.guild.id,
+        )
 
     async def send_normal_reply(self, description):
         perms = self.ctx.channel.permissions_for(self.ctx.me)
         if perms.embed_links:
-            embed = discord.Embed(color=self.ctx.bot.main_color, description=description)
+            embed = discord.Embed(
+                color=self.ctx.bot.main_color, description=description
+            )
             await self.ctx.send(embed=embed)
         else:
             await self.ctx.send(description)
-            
+
     async def send_success_reply(self, description):
         perms = self.ctx.channel.permissions_for(self.ctx.me)
         if perms.embed_links:
@@ -313,7 +331,9 @@ class PictionarySession:
     async def send_error_reply(self, description):
         perms = self.ctx.channel.permissions_for(self.ctx.me)
         if perms.embed_links:
-            embed = discord.Embed(color=self.ctx.bot.error_color, description=description)
+            embed = discord.Embed(
+                color=self.ctx.bot.error_color, description=description
+            )
             await self.ctx.send(embed=embed)
         else:
             await self.ctx.send(description)
@@ -405,7 +425,9 @@ class Pictionary(commands.Cog):
         data : dict
             New data to be stored in cache and updated in the database.
         """
-        await self.db.find_one_and_update({"_id": ctx.guild.id}, {"$set": data}, upsert=True)
+        await self.db.find_one_and_update(
+            {"_id": ctx.guild.id}, {"$set": data}, upsert=True
+        )
         config = self._config_cache[ctx.guild.id]
         for key, value in data.items():
             config[key] = value
@@ -472,10 +494,8 @@ class Pictionary(commands.Cog):
             raise commands.BadArgument("Must be larger than the answer time limit.")
         new_settings = {"timeout": seconds}
         await self.update_config(ctx, new_settings)
-        desc = (
-            "Done. Pictionary sessions will now time out after {num} seconds of no responses.".format(
-                num=seconds
-            )
+        desc = "Done. Pictionary sessions will now time out after {num} seconds of no responses.".format(
+            num=seconds
         )
         embed = discord.Embed(color=10731148, description=desc)
         await ctx.send(embed=embed)
@@ -491,7 +511,8 @@ class Pictionary(commands.Cog):
             desc = "Done. Pictionary lists can now override the pictionary settings for this server."
         else:
             desc = (
-                "Done. Pictionary lists can no longer override the pictionary settings for this " "server."
+                "Done. Pictionary lists can no longer override the pictionary settings for this "
+                "server."
             )
         embed = discord.Embed(color=10731148, description=desc)
         await ctx.send(embed=embed)
@@ -582,7 +603,9 @@ class Pictionary(commands.Cog):
         settings["lists"] = dict(zip(categories, reversed(authors)))
         session = PictionarySession.start(ctx, pictionary_dict, settings)
         self.pictionary_sessions.append(session)
-        logger.debug("New pictionary session; <#%s> in %d", ctx.channel.id, ctx.guild.id)
+        logger.debug(
+            "New pictionary session; <#%s> in %d", ctx.channel.id, ctx.guild.id
+        )
 
     @trivia_stop_check()
     @pictionary.command(name="stop")
@@ -591,7 +614,9 @@ class Pictionary(commands.Cog):
         """Stop an ongoing pictionary session."""
         session = self._get_pictionary_session(ctx.channel)
         if session is None:
-            raise commands.BadArgument("There is no ongoing pictionary session in this channel.")
+            raise commands.BadArgument(
+                "There is no ongoing pictionary session in this channel."
+            )
         await session.end_game()
         session.force_stop()
 
@@ -617,7 +642,9 @@ class Pictionary(commands.Cog):
                 title=title, color=self.bot.main_color, description=description
             )
             len_list = len(lists)
-            footer_text = f"Found {plural(len_list):pictionary category|pictionary categories}"
+            footer_text = (
+                f"Found {plural(len_list):pictionary category|pictionary categories}"
+            )
             embed.set_footer(text=footer_text)
             return embed
 
@@ -639,7 +666,9 @@ class Pictionary(commands.Cog):
         session = EmbedPaginatorSession(ctx, *embeds)
         await session.run()
 
-    @pictionary.command(name="leaderboard", aliases=["lboard", "lb"], invoke_without_command=True)
+    @pictionary.command(
+        name="leaderboard", aliases=["lboard", "lb"], invoke_without_command=True
+    )
     @checks.has_permissions(PermissionLevel.REGULAR)
     async def pictionary_leaderboard(
         self, ctx: commands.Context, sort_by: str = "wins", top: int = 10
@@ -688,7 +717,9 @@ class Pictionary(commands.Cog):
         elif key in ("total", "score", "answers", "correct"):
             return "total_score"
 
-    async def send_leaderboard(self, ctx: commands.Context, data: dict, key: str, top: int):
+    async def send_leaderboard(
+        self, ctx: commands.Context, data: dict, key: str, top: int
+    ):
         """
         Send the leaderboard from the given data.
 
@@ -808,7 +839,9 @@ class Pictionary(commands.Cog):
             The session which has just ended.
         """
         channel = session.ctx.channel
-        logger.debug("Ending pictionary session; <#%s> in %s", channel.id, channel.guild.id)
+        logger.debug(
+            "Ending pictionary session; <#%s> in %s", channel.id, channel.guild.id
+        )
         if session in self.pictionary_sessions:
             self.pictionary_sessions.remove(session)
         if session.scores:
@@ -863,7 +896,9 @@ class Pictionary(commands.Cog):
         try:
             path = next(p for p in self._all_lists() if p.stem == category)
         except StopIteration:
-            raise FileNotFoundError("Could not find the `{}` category.".format(category))
+            raise FileNotFoundError(
+                "Could not find the `{}` category.".format(category)
+            )
 
         with path.open(encoding="utf-8") as file:
             try:
@@ -873,9 +908,16 @@ class Pictionary(commands.Cog):
             else:
                 return dict_
 
-    def _get_pictionary_session(self, channel: discord.TextChannel) -> PictionarySession:
+    def _get_pictionary_session(
+        self, channel: discord.TextChannel
+    ) -> PictionarySession:
         return next(
-            (session for session in self.pictionary_sessions if session.ctx.channel == channel), None
+            (
+                session
+                for session in self.pictionary_sessions
+                if session.ctx.channel == channel
+            ),
+            None,
         )
 
     def _all_lists(self) -> List[Path]:
