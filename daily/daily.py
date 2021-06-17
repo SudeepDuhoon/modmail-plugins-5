@@ -6,19 +6,6 @@ import discord
 class Daily(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        
-    @staticmethod
-    def natime():
-        """Get time left for daily in NA till 4am their time."""
-        now = datetime.datetime.now(pytz.timezone("America/Chicago"))
-        utc_time_for_tz_loop: datetime.datetime = (
-            datetime.datetime.combine(
-                now.date() + datetime.timedelta(days=1), datetime.time(hour=4)
-            )
-            - now.utcoffset()
-        )
-        delta = utc_time_for_tz_loop - datetime.datetime.utcnow()
-        return humanize.time.precisedelta(delta, minimum_unit="minutes", format="%0.f")
 
     @commands.command()
     async def daily(self, ctx):
