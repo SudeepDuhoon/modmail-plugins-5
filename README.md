@@ -5,4 +5,4 @@
   <a href="https://github.com/ambv/black">
     <img src="https://img.shields.io/badge/Code%20Style-Black-black?style=for-the-badge"></a>
 
-## What is Modmail? :shinto_shrine: ⋅⊱ Narukami Shrine Modmail Plugins
+## :shinto_shrine: ⋅⊱ Narukami Shrine Modmail Plugins
