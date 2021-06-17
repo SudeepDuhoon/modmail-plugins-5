@@ -79,8 +79,7 @@ class Daily(commands.Cog):
                 url="https://cdn.discordapp.com/attachments/815386324658814976/852729859125018654/Thursday.png"
             )
             embed.set_footer(
-                text="{NADaily}",
-                NADaily=self.natime()
+                text="Dailies reset at 4AM. Check #server·status for a countdown.",
             )
             await ctx.send(embed=embed)
         if datetime.today().isoweekday() == 5:
