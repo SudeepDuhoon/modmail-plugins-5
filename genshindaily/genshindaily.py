@@ -26,13 +26,13 @@ class Daily(commands.Cog):
             }
             
             genshindrops = {
-                0: "https://cdn.discordapp.com/attachments/815386324658814976/820723149413941369/Sunday.png",
-                1: "https://cdn.discordapp.com/attachments/815386324658814976/854084085357871104/Monday.png",
-                2: "https://cdn.discordapp.com/attachments/815386324658814976/846913736601894912/Tuesday.png",
-                3: "https://cdn.discordapp.com/attachments/815386324658814976/847369307071316029/Wednesday.png",
-                4: "https://cdn.discordapp.com/attachments/815386324658814976/852729859125018654/Thursday.png",
-                5: "https://cdn.discordapp.com/attachments/815386324658814976/847671599669706762/Friday.png",
-                6: "https://cdn.discordapp.com/attachments/815386324658814976/852729859125018654/Thursday.png",            
+                0: "https://cdn.discordapp.com/attachments/815386324658814976/854084085357871104/Monday.png",
+                1: "https://cdn.discordapp.com/attachments/815386324658814976/846913736601894912/Tuesday.png",
+                2: "https://cdn.discordapp.com/attachments/815386324658814976/847369307071316029/Wednesday.png",
+                3: "https://cdn.discordapp.com/attachments/815386324658814976/854084085357871104/Monday.png",
+                4: "https://cdn.discordapp.com/attachments/815386324658814976/846913736601894912/Tuesday.png",
+                5: "https://cdn.discordapp.com/attachments/815386324658814976/847369307071316029/Wednesday.png",            
+                6: "https://cdn.discordapp.com/attachments/815386324658814976/820723149413941369/Sunday.png",
             }
 
             region_tz = {
