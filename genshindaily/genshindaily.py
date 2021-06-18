@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from datetime import date, datetime
-from pytz import pytz
+import pytz
 
 
 class Daily(commands.Cog):
