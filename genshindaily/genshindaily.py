@@ -36,8 +36,8 @@ class Daily(commands.Cog):
             }
 
             region_tz = {
-                "NA":'Europe/Dublin',
-                "EU":'America/Chicago',
+                "NA":'America/Chicago',
+                "EU":'Europe/Dublin',
                 "ASIA":'Asia/Hong_Kong',
             }
             
