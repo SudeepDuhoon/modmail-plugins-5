@@ -60,7 +60,7 @@ class Daily(commands.Cog):
                 url=f"{genshindrops[day]}"
             )
             embed.set_footer(
-                text="Dailies reset at 4AM. Check #serverÂ·status for a countdown."
+                text="Dailies reset at 4AM. Check #server·status for a countdown."
             )
             await ctx.send(embed=embed)
 
