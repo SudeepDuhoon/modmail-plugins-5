@@ -1,5 +1,7 @@
 from discord.ext import commands
+import time
 
+cooldown = True
 
 class Reply(commands.Cog):
     def __init__(self, bot):
@@ -7,12 +9,15 @@ class Reply(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-
+        global cooldown
         if message.author.bot:
             return
 
-        if "hello" in message.content.lower():
+        if "hello" in message.content.lower() and cooldown:
+            cooldown = False
             await message.channel.send("Hey")
+            time.sleep(5)
+            cooldown = True
         elif "yo" in message.content.lower():
             await message.channel.send("yo")
         elif "gm" in message.content.lower():
