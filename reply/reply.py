@@ -16,7 +16,7 @@ class Reply(commands.Cog):
         if "hello" in message.content.lower() and cooldown:
             cooldown = False
             await message.channel.send("Hey")
-            time.sleep(5)
+            time.sleep(60)
             cooldown = True
         elif "yo" in message.content.lower():
             await message.channel.send("yo")
