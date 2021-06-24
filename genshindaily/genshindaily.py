@@ -11,7 +11,8 @@ class Daily(commands.Cog):
     @commands.command()
     async def daily(self, ctx, region: str):
         """
-        I'm Gay?
+        Display today's available dailies by region.\n
+        Available arguments: `NA, EU, Asia`
         """
         try:
             # default variables initialization 
