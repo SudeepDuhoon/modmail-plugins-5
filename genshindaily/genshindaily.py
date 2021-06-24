@@ -11,8 +11,8 @@ class Daily(commands.Cog):
     @commands.command()
     async def daily(self, ctx, region: str):
         """
-        Display today's available dailies by region.\n
-        Available arguments: `NA, EU, Asia`
+        Display today's dailies by region.
+        Available regions: `NA, EU, Asia`
         """
         try:
             # default variables initialization 
