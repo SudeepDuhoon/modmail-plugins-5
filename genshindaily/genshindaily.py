@@ -10,6 +10,9 @@ class Daily(commands.Cog):
 
     @commands.command()
     async def daily(self, ctx, region: str):
+        """
+        I'm Gay?
+        """
         try:
             # default variables initialization 
             region = region.upper()
