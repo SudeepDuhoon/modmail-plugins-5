@@ -174,7 +174,7 @@ class Countdowns(commands.Cog):
             hours += months * 30 + days * 24 + minutes / 60 + seconds / 60 / 60
             hours = round(hours)
 
-            await channel.edit(name=f"{name}: {days}d")
+            await channel.edit(name=f"{name}: {hours} hours")
             await asyncio.sleep(timedelta(days=1).total_seconds())
 
         elif hours > 1:
