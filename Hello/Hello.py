@@ -4,7 +4,6 @@ class Hello(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.Cog.listener()
 	if message.content.upper().startswith(".BANLIST"):
             ban_list = await client.get_bans(message.server)
             if not ban_list:
