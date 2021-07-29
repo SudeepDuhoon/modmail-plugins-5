@@ -29,7 +29,9 @@ class Banlist(commands.Cog):
       else:
         embed = discord.Embed(color=1, description="\n".join(send_list))
         print(len("".join(send_list)))
+        await asyncio.sleep(1)
         await ctx.send(embed=embed)
+        
         send_char_count = 0
         send_list = []
         send_char_count += len(ban)
