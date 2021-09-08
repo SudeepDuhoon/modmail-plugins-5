@@ -32,14 +32,14 @@ class Mediaonly(commands.Cog):
             if message.author.bot:
                 await asyncio.sleep(5)
                 await self.delete(message, warning=None)
-            elif 'FOO' in message.content:
+            elif 'http' in message.content:
                 if 'POO' in message.content:
                     await self.delete(message, warning=f'{message.author.mention}, send 1 emoji at a time.')
-                elif not 'FOO' in message.content:
-                    await self.delete(message, warning=f'{message.author.mention}, only png, gif, jpg, jpeg and mp4 files are allowed here 📷')
+                elif not 'http' in message.content:
+                    await self.delete(message, warning=f'{message.author.mention}, please repost with the source of the image as a full link.')
 
             else:
-                await self.delete(message, warning=f'{message.author.mention}, only images + captions are allowed. If you wish to add a caption, edit your original message.')
+                await self.delete(message, warning=f'{message.author.mention}, please repost with the source of the image as a full link.')
 
 
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
