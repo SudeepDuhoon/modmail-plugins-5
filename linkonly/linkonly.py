@@ -28,14 +28,15 @@ class Mediaonly(commands.Cog)
 
     @commands.Cog.listener()
     async def on_message(self, message)
+        streamables = re.compile(r'streamable(\.com)\/([\w-]{2,50})')
         if self.config.get('status', True) and message.channel.id in self.config.get('channel_ids', [])
             if message.author.bot
                 await asyncio.sleep(5)
                 await self.delete(message, warning=None)
-            elif len(message.attachments)
+            elif len(streamables.search(message.content))
                 if len(message.attachments)  1
                     await self.delete(message, warning=f'{message.author.mention}, send 1 emoji at a time.')
-                elif not (message.attachments[0].filename.endswith('.png') or message.attachments[0].filename.endswith('.gif') or message.attachments[0].filename.endswith('.jpeg') or message.attachments[0].filename.endswith('.jpg') or message.attachments[0].filename.endswith('.mp4'))
+                elif not (streamables.search(message.content))
                     await self.delete(message, warning=f'{message.author.mention}, only png, gif, jpg, jpeg and mp4 files are allowed here 📷')
 
             else
