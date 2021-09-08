@@ -32,10 +32,10 @@ class Mediaonly(commands.Cog):
             if message.author.bot:
                 await asyncio.sleep(5)
                 await self.delete(message, warning=None)
-            elif len(message.attachments):
-                if len(message.attachments) > 1:
+            elif 'FOO' in message.content:
+                if 'POO' in message.content:
                     await self.delete(message, warning=f'{message.author.mention}, send 1 emoji at a time.')
-                elif not (message.attachments[0].filename.endswith('.png') or message.attachments[0].filename.endswith('.gif') or message.attachments[0].filename.endswith('.jpeg') or message.attachments[0].filename.endswith('.jpg') or message.attachments[0].filename.endswith('.mp4')):
+                elif not 'FOO' in message.content:
                     await self.delete(message, warning=f'{message.author.mention}, only png, gif, jpg, jpeg and mp4 files are allowed here 📷')
 
             else:
