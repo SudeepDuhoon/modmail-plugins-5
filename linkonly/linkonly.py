@@ -32,16 +32,18 @@ class Mediaonly(commands.Cog):
             if message.author.bot:
                 await asyncio.sleep(5)
                 await self.delete(message, warning=None)
+            elif len(message.attachments):
+                if len(message.attachments) = 1:
+                    elif 'http' in message.content:
+                        if 'danbooru' in message.content:
+                            await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
+                    elif 'google' in message.content:
+                            await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
+                    
             elif 'http' in message.content:
                 if 'danbooru' in message.content:
                     await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
                 elif 'google' in message.content:
-                    await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
-                elif 'gelbooru' in message.content:
-                    await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
-                elif 'safebooru' in message.content:
-                    await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
-                elif 'pinterest' in message.content:
                     await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
 
             else:
