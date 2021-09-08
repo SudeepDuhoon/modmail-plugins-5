@@ -7,23 +7,23 @@ from core import checks
 from core.models import PermissionLevel
 
 
-class linkonly(commands.Cog)
-    Sets up media channel in discord. edited from 4jr's emoji plugin
+class Mediaonly(commands.Cog):
+    """Sets up media channel in discord. edited from 4jr's emoji plugin"""
 
-    def __init__(self, bot)
+    def __init__(self, bot):
         self.bot = bot
         self.db = bot.plugin_db.get_partition(self)
         bot.loop.create_task(self.load_variables())
 
-    async def load_variables(self)
-        self.config = await self.db.find_one({'_id' 'config'}) or {}
+    async def load_variables(self):
+        self.config = await self.db.find_one({'_id': 'config'}) or {}
 
-    async def delete(self, message, warning)
-        if warning
+    async def delete(self, message, warning):
+        if warning:
             await message.channel.send(warning, delete_after=5)
-        try
+        try:
             await message.delete()
-        except discord.NotFound
+        except discord.NotFound:
             pass
 
     @commands.Cog.listener()
@@ -44,16 +44,16 @@ class linkonly(commands.Cog)
 
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     @commands.group(invoke_without_command=True)
-    async def mediachannels(self, ctx)
-        Configure media only Channels, accepted media files are png, gif, jpg, jpeg and mp4
+    async def mediachannels(self, ctx):
+        """Configure media only Channels, accepted media files are png, gif, jpg, jpeg and mp4"""
         await ctx.send_help(ctx.command)
 
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     @mediachannels.command(aliases=['channel'])
-    async def channels(self, ctx, channels_ discord.TextChannel)
-        Configure media Channel(s)
+    async def channels(self, ctx, *channels_: discord.TextChannel):
+        """Configure media Channel(s)"""
         self.config = await self.db.find_one_and_update(
-            {'_id' 'config'}, {'$set' {'channel_ids' [i.id for i in channels_]}},
+            {'_id': 'config'}, {'$set': {'channel_ids': [i.id for i in channels_]}},
             return_document=ReturnDocument.AFTER,
             upsert=True
         )
@@ -61,15 +61,15 @@ class linkonly(commands.Cog)
         
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     @mediachannels.command()
-    async def toggle(self, ctx)
-        Toggles status of the plugin
+    async def toggle(self, ctx):
+        """Toggles status of the plugin"""
         self.config = await self.db.find_one_and_update(
-            {'_id' 'config'}, {'$set' {'status' not self.config.get('status', True)}},
+            {'_id': 'config'}, {'$set': {'status': not self.config.get('status', True)}},
             return_document=ReturnDocument.AFTER,
             upsert=True
         )
-        await ctx.send(f'Config set Status {self.config.get(status, True)}.')
+        await ctx.send(f'Config set: Status {self.config.get("status", True)}.')
 
 
-def setup(bot)
-    bot.add_cog(linkonly(bot))
+def setup(bot):
+    bot.add_cog(Mediaonly(bot))
