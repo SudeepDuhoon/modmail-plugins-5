@@ -33,8 +33,8 @@ class Mediaonly(commands.Cog):
                 await asyncio.sleep(5)
                 await self.delete(message, warning=None)
             elif 'http' in message.content:
-                if ('danbooru' in message.content or 'google' in message.content):
-                    await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
+                if ('danbooru' in message.content or 'google' in message.content or 'pinterest' in message.content or 'safebooru' in message.content or 'gelbooru' in message.content):
+                    await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist. Example: <https://www.hoyolab.com/genshin/article/864292>')
 
             else:
                 await self.delete(message, warning=f'{message.author.mention}, please repost with the source of the image as a full link. Example: <https://www.hoyolab.com/genshin/article/864292>')
