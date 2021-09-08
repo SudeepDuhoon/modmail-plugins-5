@@ -39,7 +39,6 @@ class Mediaonly(commands.Cog):
                             await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
                     elif 'google' in message.content:
                             await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
-                    
             elif 'http' in message.content:
                 if 'danbooru' in message.content:
                     await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
