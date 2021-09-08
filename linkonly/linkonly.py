@@ -45,7 +45,7 @@ class Mediaonly(commands.Cog):
                     await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
 
             else:
-                await self.delete(message, warning=f'{message.author.mention}, please repost with the source of the image as a full link.')
+                await self.delete(message, warning=f'{message.author.mention}, please repost with the source of the image as a full link. Example: <https://www.hoyolab.com/genshin/article/864292>')
 
 
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
