@@ -7,7 +7,7 @@ from core import checks
 from core.models import PermissionLevel
 
 
-class Mediaonly(commands.Cog)
+class linkonly(commands.Cog)
     Sets up media channel in discord. edited from 4jr's emoji plugin
 
     def __init__(self, bot)
@@ -27,19 +27,18 @@ class Mediaonly(commands.Cog)
             pass
 
     @commands.Cog.listener()
-    async def on_message(self, message)
-        streamables = re.compile(r'streamable(\.com)\/([\w-]{2,50})')
-        if self.config.get('status', True) and message.channel.id in self.config.get('channel_ids', [])
-            if message.author.bot
+    async def on_message(self, message):
+        if self.config.get('status', True) and message.channel.id in self.config.get('channel_ids', []):
+            if message.author.bot:
                 await asyncio.sleep(5)
                 await self.delete(message, warning=None)
-            elif len(streamables.search(message.content))
-                if len(message.attachments)  1
+            elif len(message.attachments):
+                if len(message.attachments) > 1:
                     await self.delete(message, warning=f'{message.author.mention}, send 1 emoji at a time.')
-                elif not (streamables.search(message.content))
+                elif not (message.attachments[0].filename.endswith('.png') or message.attachments[0].filename.endswith('.gif') or message.attachments[0].filename.endswith('.jpeg') or message.attachments[0].filename.endswith('.jpg') or message.attachments[0].filename.endswith('.mp4')):
                     await self.delete(message, warning=f'{message.author.mention}, only png, gif, jpg, jpeg and mp4 files are allowed here 📷')
 
-            else
+            else:
                 await self.delete(message, warning=f'{message.author.mention}, only images + captions are allowed. If you wish to add a caption, edit your original message.')
 
 
@@ -73,4 +72,4 @@ class Mediaonly(commands.Cog)
 
 
 def setup(bot)
-    bot.add_cog(Mediaonly(bot))
+    bot.add_cog(linkonly(bot))
