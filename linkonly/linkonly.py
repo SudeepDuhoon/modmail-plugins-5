@@ -33,9 +33,7 @@ class Mediaonly(commands.Cog):
                 await asyncio.sleep(5)
                 await self.delete(message, warning=None)
             elif 'http' in message.content:
-                if 'danbooru' in message.content:
-                    await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
-                elif 'google' in message.content:
+                if ('danbooru' in message.content or 'google' in message.content):
                     await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
 
             else:
