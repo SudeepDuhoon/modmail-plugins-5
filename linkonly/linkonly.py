@@ -33,10 +33,16 @@ class Mediaonly(commands.Cog):
                 await asyncio.sleep(5)
                 await self.delete(message, warning=None)
             elif 'http' in message.content:
-                if 'POO' in message.content:
-                    await self.delete(message, warning=f'{message.author.mention}, send 1 emoji at a time.')
-                elif not 'http' in message.content:
-                    await self.delete(message, warning=f'{message.author.mention}, please repost with the source of the image as a full link.')
+                if 'danbooru' in message.content:
+                    await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
+                elif 'google' in message.content:
+                    await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
+                elif 'gelbooru' in message.content:
+                    await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
+                elif 'safebooru' in message.content:
+                    await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
+                elif 'pinterest' in message.content:
+                    await self.delete(message, warning=f'{message.author.mention}, this is not a primary source. Please repost with a link to the original artist.')
 
             else:
                 await self.delete(message, warning=f'{message.author.mention}, please repost with the source of the image as a full link.')
