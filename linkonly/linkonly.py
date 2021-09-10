@@ -62,7 +62,7 @@ class Mediaonly(commands.Cog):
             else:
                 await self.delete(
                     message,
-                    warning=f"{message.author.mention}, this appears to be unsourced art. \nPlease repost with the source of the image as a full link. \n\nExample: <https://www.hoyolab.com/genshin/article/864292>",
+                    warning=f"{message.author.mention}, this appears to be unsourced art. \nPlease repost with the source of the image as a full link in your message body. \n\nExample: <https://www.hoyolab.com/genshin/article/864292>",
                 )
 
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
