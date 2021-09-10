@@ -9,9 +9,9 @@ class Verify(commands.Cog):
         self.bot = bot
         self.maincolor = 0x06c9ff
         self.errorcolor = 0xFF0000
-        self.log_channel = 737378978410790912  # ID of the log channel
-        self.defaultRole = 586643846780158087  # ID of the Discord Member role
-        self.unverifiedRole = 737416620951207987 # ID of unverified role
+        self.log_channel = 855018986936336407  # ID of the log channel
+        self.defaultRole = 874129898707513344  # ID of the Discord Member role
+        self.unverifiedRole = 874137536983875634 # ID of unverified role
 
     @commands.command(name="send-verify")
     @commands.has_permissions(administrator=True)
