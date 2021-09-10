@@ -41,6 +41,7 @@ class Mediaonly(commands.Cog):
                     or "pinterest" in message.content
                     or "safebooru" in message.content
                     or "gelbooru" in message.content
+                    or "zerochan" in message.content
                 ):
                     await self.delete(
                         message,
