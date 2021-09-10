@@ -8,7 +8,7 @@ from core.models import PermissionLevel
 
 
 class Mediaonly(commands.Cog):
-    """Sets up media channel in discord. edited from 4jr's emoji plugin"""
+    """Sets up a media channel that requires users to link a source."""
 
     def __init__(self, bot):
         self.bot = bot
@@ -45,7 +45,7 @@ class Mediaonly(commands.Cog):
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
     @commands.group(invoke_without_command=True)
     async def mediachannels(self, ctx):
-        """Configure media only Channels, accepted media files are png, gif, jpg, jpeg and mp4"""
+        """Configure Media-only channels, accepted media files are png, gif, jpg, jpeg and mp4"""
         await ctx.send_help(ctx.command)
 
     @checks.has_permissions(PermissionLevel.ADMINISTRATOR)
